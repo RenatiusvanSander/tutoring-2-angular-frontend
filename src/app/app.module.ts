@@ -7,13 +7,39 @@ import { FrontendStatusComponent } from './frontend-status/frontend-status.compo
 import { WelcomeComponent } from './welcome/welcome.component';
 import { RouterModule, RouterOutlet, provideRouter } from '@angular/router';
 import { app_routes } from './app.routes';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { InfoSignInComponent } from './info-sign-in/info-sign-in.component';
+import { MaterialsShopComponent } from './materials-shop/materials-shop.component';
+import { EducationalInstitutionsComponent } from './educational-institutions/educational-institutions.component';
+import { CapacitiesComponent } from './capacities/capacities.component';
+import { RegisterComponent } from './register/register.component';
+import { AvailablesPracesComponent } from './availables-praces/availables-praces.component';
+import { ContactComponent } from './contact/contact.component';
+import { DisclaimerComponent } from './disclaimer/disclaimer.component';
+import { NewsletterComponent } from './newsletter/newsletter.component';
+import { EmailComponent } from './email/email.component';
+import { PhoneComponent } from './phone/phone.component';
+import { TutoringComponent } from './tutoring/tutoring.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     FrontendStatusComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    AboutUsComponent,
+    InfoSignInComponent,
+    MaterialsShopComponent,
+    EducationalInstitutionsComponent,
+    CapacitiesComponent,
+    RegisterComponent,
+    AvailablesPracesComponent,
+    ContactComponent,
+    DisclaimerComponent,
+    NewsletterComponent,
+    EmailComponent,
+    PhoneComponent,
+    TutoringComponent
   ],
   imports: [
     BrowserModule,

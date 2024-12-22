@@ -66,6 +66,10 @@
     max-width: 9.2rem;
   }
 
+  .margin--left-8rem {
+    margin-left: 128px;
+  }
+
   .content {
     display: flex;
     justify-content: space-around;
