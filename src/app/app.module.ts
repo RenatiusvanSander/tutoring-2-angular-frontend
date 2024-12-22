@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FrontendStatusComponent } from './frontend-status/frontend-status.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { RouterModule, provideRouter } from '@angular/router';
+import { RouterModule, RouterOutlet, provideRouter } from '@angular/router';
 import { app_routes } from './app.routes';
 
 @NgModule({
@@ -17,7 +17,9 @@ import { app_routes } from './app.routes';
   ],
   imports: [
     BrowserModule,
-    RouterModule
+    RouterModule,
+    RouterOutlet,
+    AppRoutingModule
   ],
   providers: [provideRouter(app_routes)],
   bootstrap: [AppComponent]
