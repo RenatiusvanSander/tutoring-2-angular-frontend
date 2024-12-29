@@ -65,25 +65,25 @@
 
       <ul class="navigation-list">
         <li class="navigation-item">
-          <a href="#" class="navigation-link">&Uuml;ber uns</a>
+          <a routerLink="/about-us" class="navigation-link">&Uuml;ber uns</a>
         </li>
         <li class="navigation-item">
-          <a href="#" class="navigation-link">Registrieren</a>
+          <a routerLink="/register" class="navigation-link">Registrieren</a>
         </li>
         <li class="navigation-item">
           <a routerLink="/login" class="navigation-link">Anmeldung</a>
         </li>
         <li class="navigation-item">
-          <a href="#" class="navigation-link">unterst&uuml;tzte Hochschulen<br /> / Berufsschulen /<br /> Universit&auml;ten</a>
+          <a routerLink="/educational-institutions" class="navigation-link">unterst&uuml;tzte Hochschulen<br /> / Berufsschulen /<br /> Universit&auml;ten</a>
         </li>
         <li class="navigation-item">
-          <a href="#" class="navigation-link">Freie Pl&auml;tze</a>
+          <a routerLink="/available-spaces" class="navigation-link">Freie Pl&auml;tze</a>
         </li>
         <li class="navigation-item">
-          <a href="#" class="navigation-link">Kontakt</a>
+          <a routerLink="/contact" class="navigation-link">Kontakt</a>
         </li>
         <li class="navigation-item">
-          <a href="#" class="navigation-link">Impressum</a>
+          <a routerLink="/disclaimer" class="navigation-link">Impressum</a>
         </li>
       </ul>
 
@@ -106,165 +106,7 @@
       </ul>
     </nav>
   </div>
-  <!-- header -->
-  <header class="header">
-    <div class="brand">
-      <div>
-        <img src="img/crown.png" alt="" width="80">
-      </div>
-      <h3 class="tutoring-heading">RMeier Nachhilfe</h3>
-      <div class="banner">
-        <h1 class="banner-heading">Willkommen zur Nachhilfe</h1>
-        <p class="banner-paragraph">Lernen ist das halbe Leben.</p>
-        <button class="banner-button">Buchen</button>
-      </div>
-    </div>
-  </header>
-  <!-- end of header -->
-
   <router-outlet></router-outlet>
-
-  <!-- about us -->
-  <section class="about-us">
-    <div class="about-us-content">
-      <h1 class="about-us-heading">&Uuml;ber uns</h1>
-      <div class="underline">
-        <div class="small-underline"></div>
-        <div class="big-underline"></div>
-        <h3 class="sub-heading">RMeier Freelance Nachhilfe</h3>
-        <p class="about-us-paragraph">Wir machen f&uuml;r Studenten, Auszubildende / Berufsschüler, Gymnasiasten Nachhilfe. Die Bereiche sind Mathematik, Elektrotechnik, IT-Systeme und Java Programmierung. Und wir geben Nachhilfe mit <i class="fas fa-heart"></i>.</p>
-        <p class="about-us-paragraph">Wir erstellen individuelle Materialien f&uuml;r unsere Nachhilfenehmer. Wir bereiten jede Nachhilfestunde vor. Wir erstellen Aufgaben zum kunden-gew&uuml;nschten Bereich. Unsere Preise richten sich nach Absprache, dennoch unterschreiten diese nicht den gesetzlichen Mindestlohn. Wir geben Nachhilfe g&uuml;nstiger, weil Nachhilfe für jeden Geldbeutel erschwinglich sein soll. Beispielsweise zahlen Sie bei Programmiernachhilfe 35 EUR bis 70 EUR die Stunde. Wir nehmen maximal 35 EUR und minimal 25 EUR bei Programmierung. Bei Elektrotechnik ist es mindestens der gesetzliche Mindestlohn und maximal 25 EUR. Alle geschieht immer auf Rechnung, welche ohne Umsatzsteuer ist, weil dies eine Kleinstunternehmung neben einer Festanstellung ist. Ebenfalls wird die Nachhilfe als hobbymäßig gelebt.</p>
-        <p class="about-us-paragraph">Wir nehmen maximal 2 Kunden an und geben insgesamt pro Woche maximal 10 Stunden Nachhilfe. Hiermit ist gew&auml;hrleistet unsere Nachilfenehmer bekommen die nötige Unterst&uuml;tzung und Klausurvorbereitung. Deshalb gibt es ein Nottelefon rein f&uuml;r die Kunden.</p>
-        <p class="about-us-paragraph">Wir unterst&uuml;tzen bei Ausbilungs-Abschlussprojekten / IHK-Projekten sowie Bachelorthesen. Wir verstehen uns hierbei nicht als wissenschaftliche Schreiber, sondern als Helfer und Erkl&auml;rer, denn eine Abschlussarbeit sollte immer die eigene Leistung des Absolventen sein. Und lehnen "Ghostwriting" ab.</p>
-        <p class="about-us-paragraph">Registrierende Nachhilfenehmer bekommen Zugriff auf digitale Materialien, digitale Termin-Vereinbarung und kaufbare Materialien.</p>
-        <p class="about-us-paragraph">Am Ende einer Nachhilfe sollte die Arbeit / Klausur bestanden sein.</p>
-        <button class="about-us-btn">
-          Mehr
-          <i class="fas fa-angle-double-right btn-arrow"></i>
-        </button>
-      </div>
-    </div>
-
-    <div class="about-us-images">
-      <img src="" class="image image-1" alt="">
-      <img src="" class="image image-2" alt="">
-      <img src="" class="image image-3" alt="">
-      <img src="" class="image image-4" alt="">
-    </div>
-  </section>
-  <!-- end of about us-->
-
-  <!-- register -->
-  <section class="about-us">
-    <div class="about-us-content">
-      <h1 class="about-us-heading">Registrieren</h1>
-      <div class="underline">
-        <div class="small-underline"></div>
-        <div class="big-underline"></div>
-        <p class="about-us-paragraph">Eine Registration bringt mit sich Zugang zu Kursmaterialien, kaufbaren Materialien und Terminvereinbarung. Wenn Sie sich 6 Monate nicht mehr anmelden, wird das Konto inklusive s&auml;mtlicher Daten gel&ouml;scht. </p>
-        <button class="about-us-btn">
-          Registrieren
-          <i class="fas fa-angle-double-right btn-arrow"></i>
-        </button>
-      </div>
-    </div>
-  </section>
-  <!-- end of register -->
-
-  <!-- materials -->
-  <section class="about-us">
-    <div class="about-us-content">
-      <h1 class="about-us-heading">Materialien</h1>
-      <div class="underline">
-        <div class="small-underline"></div>
-        <div class="big-underline"></div>
-        <p class="about-us-paragraph">Materialien werden nach der Anmeldung sichtbar.</p>
-      </div>
-    </div>
-  </section>
-  <!-- materials of register -->
-
-  <!-- education building -->
-  <section class="about-us">
-    <div class="about-us-content">
-      <h1 class="about-us-heading">Bildungseinrichtungen</h1>
-      <div class="underline">
-        <div class="small-underline"></div>
-        <div class="big-underline"></div>
-        <p class="about-us-paragraph">Wir erweitern unsere Liste der Bildungseinrichtungen st&auml;ndig mit neuen Kunden.</p>
-        <div class="educational-establishment-wrapper">
-          <div class="educational-establishment-tile">HAW Hamburg</div>
-          <div class="educational-establishment-tile">FOM Hamburg</div>
-          <div class="educational-establishment-tile">FH L&uuml;beck</div>
-          <div class="educational-establishment-tile">FH Kiel / Kiel University of Applied Sciences</div>
-          <div class="educational-establishment-tile">Hochschule Bochum / Bochum University of Applied Sciences</div>
-          <div class="educational-establishment-tile">BS Elsmhorn</div>
-          <div class="educational-establishment-tile">Universit&auml;t M&uuml;nchen</div>
-          <div class="educational-establishment-tile">HSW / Hochschule Weserbergland</div>
-          <div class="educational-establishment-tile educational-establishment-tile--end">BS 14 Hamburg-Wilhemsburg</div>
-          <div class="educational-establishment-tile educational-establishment-tile--end">Berufliche Schule Energietechnik Altona - BEA</div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- end of education building -->
-
-  <!-- free places -->
-  <section class="about-us">
-    <div class="about-us-content">
-      <h1 class="about-us-heading">Freie Pl&auml;tze</h1>
-      <div class="underline">
-        <div class="small-underline"></div>
-        <div class="big-underline"></div>
-        <p class="about-us-paragraph">Freie Pl&auml;tze k&ouml;nnen sich jeder Zeit ergeben. Sie k&ouml;nnen sich eintragen und werden bei freiem Platz per E-Mail benachrichtigt. Ihre Daten werden maximal sechs Monate gespeichert.</p>
-        <button class="endorse-btn">
-          Eintragen
-          <i class="fas fa-angle-double-right btn-arrow"></i>
-        </button>
-      </div>
-    </div>
-  </section>
-  <!-- end of free places -->
-
-  <!-- disclaimer  -->
-  <section class="about-us">
-    <div class="about-us-content">
-      <h1 class="about-us-heading">Impressum</h1>
-      <div class="underline">
-        <div class="small-underline"></div>
-        <div class="big-underline"></div>
-      </div>
-      <div class="disclaimer-context">
-      <h2>Angaben gemäß § 5 TMG</h2>
-        <p>Remy Meier<br />
-          Rmeier Freelance Nachhilfe<br />
-          Volksdorfer Grenzweg 40<br />
-          A<br />
-          22359 Hamburg
-        </p>
-        <h2>Kontakt</h2>
-        <p>Telefon: 017661362253<br/>
-          E-Mail: rmeier.freelance-inf&#64;magenta.de
-        </p>
-        <h2>Redaktionell verantwortlich</h2>
-        <p>Remy Meier</p>
-        <h2>EU-Streitschlichtung</h2>
-        <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:<br />
-          <a href="https://ec.europa.eu/consumers/odr/">https://ec.europa.eu/consumers/odr/</a>.<br />
-          Unsere E-Mail-Adresse finden Sie oben im Impressum.
-        </p>
-        <h2>Verbraucherstreitbeilegung /<br />Universalschlichtungsstelle</h2>
-        <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
-          Verbraucherschlichtungsstelle teilzunehmen.
-        </p>
-        <p >Quelle:<br />
-          e-recht24.de
-        </p>
-      </div>  
-    </div>
-  </section>
-  <!-- end of disclaimer -->
-
   <!-- footer -->
   <footer class="footer">
     <div class="main-part">
@@ -272,32 +114,32 @@
         <h3 class="footer-heading-h3">Nachhilfe</h3>
         <ul class="footer-list">
           <li class="footer-list-item">
-            <a href="#" class="footer-list-link">
+            <a routerLink="/about-us" class="footer-list-link">
               &Uuml;ber uns
             </a>
           </li>
           <li class="footer-list-item">
-            <a href="#" class="footer-list-link">
+            <a routerLink="/register" class="footer-list-link">
               Registrieren
             </a>
           </li>
           <li class="footer-list-item">
-            <a href="#" class="footer-list-link">
+            <a routerLink="/materials" class="footer-list-link">
               Materialien
             </a>
           </li>
           <li class="footer-list-item">
-            <a href="#" class="footer-list-link">
+            <a routerLink="/educational-institutions" class="footer-list-link">
               Bildungseinrichtungen
             </a>
           </li>
           <li class="footer-list-item">
-            <a href="#" class="footer-list-link">
+            <a routerLink="/available-spaces" class="footer-list-link">
               freie Pl&auml;tze
             </a>
           </li>
           <li class="footer-list-item">
-            <a href="#" class="footer-list-link">
+            <a routerLink="/disclaimer" class="footer-list-link">
               Impressum
             </a>
           </li>
