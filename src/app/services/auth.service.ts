@@ -1,26 +1,26 @@
 import { Injectable } from '@angular/core';
-import { LocalStorageService } from './local-storage.service';
+import { KeycloakService } from './keycloak/keycloak.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private isAuthorized: boolean;
 
-  constructor(private localStorage: LocalStorageService) {
-    this.isAuthorized = localStorage.isLoggedIn();
-  }
+  constructor(private keycloakService: KeycloakService) {  }
 
   get isAuthenticated() {
-    return this.isAuthorized;
+    return this.keycloakService.isAuthenticated() ?? false;
   }
 
   login(): any {
-    // call keycloak login
-    return '';
+    this.keycloakService.login();
   }
 
   logout(): any {
-    return '';
+    const keycloakLogoutPromise: Promise<void> | undefined = this.keycloakService.logout();
+    if(keycloakLogoutPromise == undefined) {
+      console.log("keycloakPromise undefined");
+      return;
+    }
   }
 }
