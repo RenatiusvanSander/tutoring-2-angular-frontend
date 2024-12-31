@@ -20,6 +20,7 @@ import { NewsletterComponent } from './newsletter/newsletter.component';
 import { EmailComponent } from './email/email.component';
 import { PhoneComponent } from './phone/phone.component';
 import { TutoringComponent } from './tutoring/tutoring.component';
+import { OverviewComponent } from './overview/overview.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { TutoringComponent } from './tutoring/tutoring.component';
     NewsletterComponent,
     EmailComponent,
     PhoneComponent,
-    TutoringComponent
+    TutoringComponent,
+    OverviewComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,8 @@ import { EducationalInstitutionsComponent } from "./educational-institutions/edu
 import { AvailablesPracesComponent } from "./availables-praces/availables-praces.component";
 import { DisclaimerComponent } from "./disclaimer/disclaimer.component";
 import { ContactComponent } from "./contact/contact.component";
+import { OverviewComponent } from "./overview/overview.component";
+import { authGuard } from "./auth.guard";
 
 export const app_routes: Routes = [
     {
@@ -43,5 +45,8 @@ export const app_routes: Routes = [
     },
     {
         path: 'contact', component : ContactComponent
+    },
+    {
+        path: 'overview', component : OverviewComponent, canActivate: [authGuard]
     }
 ];
