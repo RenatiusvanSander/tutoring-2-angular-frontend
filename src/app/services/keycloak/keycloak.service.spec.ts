@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LocalStorageService } from './local-storage.service';
+import { KeycloakService } from '../keycloak/keycloak.service';
 
-describe('LocalStorageService', () => {
-  let service: LocalStorageService;
+describe('KeycloakService', () => {
+  let service: KeycloakService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(LocalStorageService);
+    service = TestBed.inject(KeycloakService);
   });
 
   it('should be created', () => {

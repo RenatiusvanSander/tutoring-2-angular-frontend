@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, importProvidersFrom, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +21,13 @@ import { EmailComponent } from './email/email.component';
 import { PhoneComponent } from './phone/phone.component';
 import { TutoringComponent } from './tutoring/tutoring.component';
 import { OverviewComponent } from './overview/overview.component';
+import { KeycloakService } from './services/keycloak/keycloak.service';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { allInterceptorProviders } from './app.interceptors';
+
+export function kcFactory(kcService: KeycloakService) {
+  return () => kcService.init();
+}
 
 @NgModule({
   declarations: [
@@ -49,7 +56,17 @@ import { OverviewComponent } from './overview/overview.component';
     RouterOutlet,
     AppRoutingModule
   ],
-  providers: [provideRouter(app_routes)],
+  providers: [
+    provideRouter(app_routes),
+    {
+      provide: APP_INITIALIZER,
+      deps: [KeycloakService],
+      useFactory: kcFactory,
+      multi: true
+    },
+    provideHttpClient(withInterceptorsFromDi()),
+    allInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
