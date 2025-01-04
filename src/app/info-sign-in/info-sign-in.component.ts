@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-info-sign-in',
   templateUrl: './info-sign-in.component.html',
-  styleUrl: './info-sign-in.component.css'
+  styleUrl: './info-sign-in.component.css',
+  standalone: false
 })
 export class InfoSignInComponent {
 
