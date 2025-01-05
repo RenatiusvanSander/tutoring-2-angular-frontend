@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import Keycloak, { KeycloakProfile } from 'keycloak-js';
+import { KeycloakLoginAndLogout } from '../KeyCloakLoginAndLogout';
 
 @Component({
   selector: 'app-login',
@@ -7,5 +9,11 @@ import { Component } from '@angular/core';
   standalone: false
 })
 export class LoginComponent {
+
+  keycloakLoginAndLogout: KeycloakLoginAndLogout;
+
+  constructor() {
+    this.keycloakLoginAndLogout = new KeycloakLoginAndLogout();
+  }
 
 }

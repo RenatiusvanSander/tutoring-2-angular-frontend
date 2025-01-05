@@ -1,15 +1,20 @@
 import { inject } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
-import { AuthService } from './services/auth.service';
+import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { AuthGuardData, createAuthGuard } from 'keycloak-angular';
+import Keycloak from 'keycloak-js';
 
-export const authGuard: CanActivateFn = (route, state) => {
-  const router = inject(Router);
-  const authService = inject(AuthService);
-  const isAuthorized = authService.isAuthenticated;
-
-  if(!isAuthorized) {
-    console.log("Not authorized user");
+const isAlreadyAuthenticated = async (
+  route: ActivatedRouteSnapshot,
+  __: RouterStateSnapshot,
+  authData: AuthGuardData
+): Promise<boolean | UrlTree> => {
+  const keycloakServce = inject(Keycloak);
+  if (keycloakServce.authenticated) {
+    return true;
   }
 
-  return isAuthorized;
-};
+  const router = inject(Router);
+  return router.parseUrl('/forbidden');
+}
+
+export const canActivateByAuthenticated = createAuthGuard<CanActivateFn>(isAlreadyAuthenticated)

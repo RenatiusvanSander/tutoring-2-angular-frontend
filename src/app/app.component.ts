@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { KeycloakLoginAndLogout } from './KeyCloakLoginAndLogout';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tutoring-2-angular-frontend';
+  keycloakLoginAndLogout: KeycloakLoginAndLogout = new KeycloakLoginAndLogout();
 }
