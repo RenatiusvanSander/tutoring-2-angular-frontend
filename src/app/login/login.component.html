@@ -1,3 +1,4 @@
 <div class="margin--left-8rem">
-    <p>login works!</p>
+    <button *ngIf="!keycloakLoginAndLogout.isLoggedIn()" (click)="keycloakLoginAndLogout.login()">Login redirect you to Login Page</button>
+    <p *ngIf="keycloakLoginAndLogout.isLoggedIn()">You are aready logged in!</p>
 </div>

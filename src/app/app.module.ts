@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { NgModule, provideZoneChangeDetection } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +13,7 @@ import { MaterialsShopComponent } from './materials-shop/materials-shop.componen
 import { EducationalInstitutionsComponent } from './educational-institutions/educational-institutions.component';
 import { CapacitiesComponent } from './capacities/capacities.component';
 import { RegisterComponent } from './register/register.component';
-import { AvailablesPracesComponent } from './availables-praces/availables-praces.component';
+import { AvailableSpacesComponent } from './available-spaces/available-spaces.component';
 import { ContactComponent } from './contact/contact.component';
 import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 import { NewsletterComponent } from './newsletter/newsletter.component';
@@ -21,22 +21,9 @@ import { EmailComponent } from './email/email.component';
 import { PhoneComponent } from './phone/phone.component';
 import { TutoringComponent } from './tutoring/tutoring.component';
 import { OverviewComponent } from './overview/overview.component';
-import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
-
-function initializeKeycloak(keycloak: KeycloakService) {
-  return () =>
-    keycloak.init({
-      config: {
-        realm: 'keycloak-angular-sandbox',
-        url: 'http://localhost:8080',
-        clientId: 'keycloak-angular'
-      },
-      initOptions: {
-        onLoad: 'check-sso',
-        silentCheckSsoRedirectUri: window.location.origin + '/assets/silent-check-sso.html'
-      }
-    });
-}
+import { includeBearerTokenInterceptor } from 'keycloak-angular';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideKeycloakApp } from './app.provide-keycloak';
 
 @NgModule({
   declarations: [
@@ -50,7 +37,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     EducationalInstitutionsComponent,
     CapacitiesComponent,
     RegisterComponent,
-    AvailablesPracesComponent,
+    AvailableSpacesComponent,
     ContactComponent,
     DisclaimerComponent,
     NewsletterComponent,
@@ -63,10 +50,14 @@ function initializeKeycloak(keycloak: KeycloakService) {
     BrowserModule,
     RouterModule,
     RouterOutlet,
-    AppRoutingModule,
-    KeycloakAngularModule
+    AppRoutingModule
   ],
-  providers: [provideRouter(app_routes)],
+  providers: [
+    provideRouter(app_routes),
+    provideKeycloakApp(),
+    provideHttpClient(withInterceptors([includeBearerTokenInterceptor])),
+    provideZoneChangeDetection({ eventCoalescing: true }),
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
