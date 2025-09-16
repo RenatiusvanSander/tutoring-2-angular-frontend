@@ -16,7 +16,7 @@ export const provideKeycloakApp = () =>
     provideKeycloak({
         config: {
             realm: 'ConnectTrial',
-            url: 'https://192.168.120.59:8443',
+            url: 'https://keycloak.local:8443',
             clientId: 'tutoring-angular-frontend'
         },
         initOptions: {
