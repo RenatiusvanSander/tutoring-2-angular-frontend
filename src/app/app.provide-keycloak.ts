@@ -9,7 +9,7 @@ import {
 } from 'keycloak-angular';
 
 const bearerTokenInterceptorCondition = createInterceptorCondition<IncludeBearerTokenCondition>({
-    urlPattern: /^(http:\/\/localhost:8080)(\/api\/.*)?$/i // Match URLs starting with http://localhost:8080/api/
+    urlPattern: /^(http:\/\/localhost:8082)(\/tutoring3\/api\/.*)?$/i // Match URLs starting with http://localhost:8082/tutoring3/api/
 });
 
 export const provideKeycloakApp = () =>
