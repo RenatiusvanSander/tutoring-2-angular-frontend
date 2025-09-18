@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { Component } from '@angular/core';
+import { KeycloakLoginAndLogout } from '../KeyCloakLoginAndLogout';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
+  standalone: false
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  constructor(private authService: AuthService) {}
+  keycloakLoginAndLogout: KeycloakLoginAndLogout;
 
-  ngOnInit(): void {
-    this.authService.login();
+  constructor() {
+    this.keycloakLoginAndLogout = new KeycloakLoginAndLogout();
   }
 
 }

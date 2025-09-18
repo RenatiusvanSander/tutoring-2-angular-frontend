@@ -89,7 +89,7 @@
 
       <div class="copyright">
         <p>
-          &copy; 2023.<br />RMeier Freelance Nachhilfe.<br />All Rights Reserved
+          &copy; 2025.<br />RMeier Freelance Nachhilfe.<br />All Rights Reserved
         </p>
       </div>
     </nav>
@@ -101,7 +101,8 @@
     <nav class="navbar2-grid">
       <ul class="navbar2-list">
         <li class="navbar2-list-item">
-          <a href="" class="navbar2-list-item-link"><label><i class="fas fa-sign-in-alt"></i>Sign Up / Log In</label></a>
+          <a *ngIf="!keycloakLoginAndLogout.isLoggedIn()" (click)="keycloakLoginAndLogout.login()" class="navbar2-list-item-link"><label><i class="fas fa-sign-in-alt"></i>Sign Up / Log In</label></a>
+          <a *ngIf="keycloakLoginAndLogout.isLoggedIn()" (click)="keycloakLoginAndLogout.logout()" class="navbar2-list-item-link"><label><i class="fas fa-sign-in-alt"></i>Logout</label></a>
         </li>
       </ul>
     </nav>
@@ -200,7 +201,7 @@
 
     <div class="creator-part">
       <div class="copy-right-text">
-        <p>Copyright &copy; 2023. RMeier Freelance Nachhilfe. All rights reserved.</p>
+        <p>Copyright &copy; 2025. RMeier Freelance Nachhilfe. All rights reserved.</p>
       </div>
 
       <div class="text-right">

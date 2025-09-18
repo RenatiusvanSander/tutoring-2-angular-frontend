@@ -1,12 +1,13 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { KeycloakLoginAndLogout } from './KeyCloakLoginAndLogout';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  standalone: false
 })
 export class AppComponent {
   title = 'tutoring-2-angular-frontend';
+  keycloakLoginAndLogout: KeycloakLoginAndLogout = new KeycloakLoginAndLogout();
 }

@@ -6,47 +6,47 @@ import { AboutUsComponent } from "./about-us/about-us.component";
 import { RegisterComponent } from "./register/register.component";
 import { MaterialsShopComponent } from "./materials-shop/materials-shop.component";
 import { EducationalInstitutionsComponent } from "./educational-institutions/educational-institutions.component";
-import { AvailablesPracesComponent } from "./availables-praces/availables-praces.component";
+import { AvailableSpacesComponent } from "./available-spaces/available-spaces.component";
 import { DisclaimerComponent } from "./disclaimer/disclaimer.component";
 import { ContactComponent } from "./contact/contact.component";
 import { OverviewComponent } from "./overview/overview.component";
-import { authGuard } from "./auth.guard";
+import { canActivateByAuthenticated } from "./auth.guard";
 
 export const app_routes: Routes = [
     {
-        path: '', component : WelcomeComponent
+        path: '', component: WelcomeComponent
     },
     {
-        path: 'welcome', component : WelcomeComponent
+        path: 'welcome', component: WelcomeComponent
     },
     {
-        path: 'login', component : LoginComponent
+        path: 'login', component: LoginComponent
     },
     {
-        path: 'status', component : FrontendStatusComponent
+        path: 'status', component: FrontendStatusComponent
     },
     {
-        path: 'about-us', component : AboutUsComponent
+        path: 'about-us', component: AboutUsComponent
     },
     {
-        path: 'register', component : RegisterComponent
+        path: 'register', component: RegisterComponent
     },
     {
-        path: 'materials', component : MaterialsShopComponent
+        path: 'materials', component: MaterialsShopComponent
     },
     {
-        path: 'educational-institutions', component : EducationalInstitutionsComponent
+        path: 'educational-institutions', component: EducationalInstitutionsComponent
     },
     {
-        path: 'available-spaces', component : AvailablesPracesComponent
+        path: 'available-spaces', component: AvailableSpacesComponent
     },
     {
-        path: 'disclaimer', component : DisclaimerComponent
+        path: 'disclaimer', component: DisclaimerComponent
     },
     {
-        path: 'contact', component : ContactComponent
+        path: 'contact', component: ContactComponent
     },
     {
-        path: 'overview', component : OverviewComponent, canActivate: [authGuard]
+        path: 'overview', component: OverviewComponent, canActivate: [canActivateByAuthenticated]
     }
 ];

@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, importProvidersFrom, NgModule } from '@angular/core';
+import { NgModule, provideZoneChangeDetection } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +13,7 @@ import { MaterialsShopComponent } from './materials-shop/materials-shop.componen
 import { EducationalInstitutionsComponent } from './educational-institutions/educational-institutions.component';
 import { CapacitiesComponent } from './capacities/capacities.component';
 import { RegisterComponent } from './register/register.component';
-import { AvailablesPracesComponent } from './availables-praces/availables-praces.component';
+import { AvailableSpacesComponent } from './available-spaces/available-spaces.component';
 import { ContactComponent } from './contact/contact.component';
 import { DisclaimerComponent } from './disclaimer/disclaimer.component';
 import { NewsletterComponent } from './newsletter/newsletter.component';
@@ -21,13 +21,9 @@ import { EmailComponent } from './email/email.component';
 import { PhoneComponent } from './phone/phone.component';
 import { TutoringComponent } from './tutoring/tutoring.component';
 import { OverviewComponent } from './overview/overview.component';
-import { KeycloakService } from './services/keycloak/keycloak.service';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { allInterceptorProviders } from './app.interceptors';
-
-export function kcFactory(kcService: KeycloakService) {
-  return () => kcService.init();
-}
+import { includeBearerTokenInterceptor } from 'keycloak-angular';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideKeycloakApp } from './app.provide-keycloak';
 
 @NgModule({
   declarations: [
@@ -41,7 +37,7 @@ export function kcFactory(kcService: KeycloakService) {
     EducationalInstitutionsComponent,
     CapacitiesComponent,
     RegisterComponent,
-    AvailablesPracesComponent,
+    AvailableSpacesComponent,
     ContactComponent,
     DisclaimerComponent,
     NewsletterComponent,
@@ -58,14 +54,9 @@ export function kcFactory(kcService: KeycloakService) {
   ],
   providers: [
     provideRouter(app_routes),
-    {
-      provide: APP_INITIALIZER,
-      deps: [KeycloakService],
-      useFactory: kcFactory,
-      multi: true
-    },
-    provideHttpClient(withInterceptorsFromDi()),
-    allInterceptorProviders
+    provideKeycloakApp(),
+    provideHttpClient(withInterceptors([includeBearerTokenInterceptor])),
+    provideZoneChangeDetection({ eventCoalescing: true }),
   ],
   bootstrap: [AppComponent]
 })
