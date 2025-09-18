@@ -1,5 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
-import Keycloak, { KeycloakProfile } from 'keycloak-js';
+import { Component } from '@angular/core';
 import { KeycloakLoginAndLogout } from '../KeyCloakLoginAndLogout';
 
 @Component({
