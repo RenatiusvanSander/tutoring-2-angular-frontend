@@ -11,6 +11,13 @@ import { DisclaimerComponent } from "./disclaimer/disclaimer.component";
 import { ContactComponent } from "./contact/contact.component";
 import { OverviewComponent } from "./overview/overview.component";
 import { canActivateByAuthenticated } from "./auth.guard";
+import { SettingsComponent } from "./settings/settings.component";
+import { UserResolver } from "./resolvers/user.resolver";
+import { AddressComponent } from "./settings/address/address/address.component";
+import { AddAddressComponent } from "./settings/Address/add-address/add-address.component";
+import { EditAddressComponent } from "./settings/Address/edit-address/edit-address.component";
+import { AddressResolver } from "./resolvers/address.resolver";
+import { DeleteAddressComponent } from "./settings/address/delete-address/delete-address.component";
 
 export const app_routes: Routes = [
     {
@@ -48,5 +55,21 @@ export const app_routes: Routes = [
     },
     {
         path: 'overview', component: OverviewComponent, canActivate: [canActivateByAuthenticated]
+    },
+    {
+        path: 'settings/:id', component: SettingsComponent, canActivate: [canActivateByAuthenticated], resolve: [UserResolver]
+    },
+    {
+        path: 'settings/address/address/:id', component: AddressComponent, canActivate: [canActivateByAuthenticated]
+    },
+    {
+        path: 'settings/address/add-address/:userId', component: AddAddressComponent, canActivate: [canActivateByAuthenticated]
+    },
+    {
+        path: 'settings/address/edit-address/:id', component: EditAddressComponent, canActivate: [canActivateByAuthenticated], resolve: [AddressResolver]
+    }
+    ,
+    {
+        path: 'settings/address/delete-address/:id', component: DeleteAddressComponent, canActivate: [canActivateByAuthenticated]
     }
 ];

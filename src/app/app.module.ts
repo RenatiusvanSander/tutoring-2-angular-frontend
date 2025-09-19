@@ -24,6 +24,13 @@ import { OverviewComponent } from './overview/overview.component';
 import { includeBearerTokenInterceptor } from 'keycloak-angular';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideKeycloakApp } from './app.provide-keycloak';
+import { SettingsComponent } from './settings/settings.component';
+import { AddressComponent } from './settings/address/address/address.component';
+import { AddAddressComponent } from './settings/Address/add-address/add-address.component';
+import { EditAddressComponent } from './settings/Address/edit-address/edit-address.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { DeleteAddressComponent } from './settings/address/delete-address/delete-address.component';
 
 @NgModule({
   declarations: [
@@ -44,13 +51,20 @@ import { provideKeycloakApp } from './app.provide-keycloak';
     EmailComponent,
     PhoneComponent,
     TutoringComponent,
-    OverviewComponent
+    OverviewComponent,
+    SettingsComponent,
+    AddressComponent,
+    AddAddressComponent,
+    EditAddressComponent,
+    DeleteAddressComponent
   ],
   imports: [
     BrowserModule,
     RouterModule,
     RouterOutlet,
-    AppRoutingModule
+    AppRoutingModule,
+    CommonModule,
+    FormsModule
   ],
   providers: [
     provideRouter(app_routes),

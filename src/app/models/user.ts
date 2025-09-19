@@ -6,7 +6,7 @@ export class User {
     familyName!: string;
     preferredUsername!: string;
     sub!: string;
-    creationDate!: Date;
+    addressIds!: Array<any>;
 
     static fromHttp(user : User) : User {
         const newUser = new User();
@@ -17,7 +17,7 @@ export class User {
         newUser.familyName = user.familyName;
         newUser.preferredUsername = user.preferredUsername;
         newUser.sub = user.sub;
-        newUser.creationDate = new Date();
+        newUser.addressIds = user.addressIds;
 
         return newUser;
     }

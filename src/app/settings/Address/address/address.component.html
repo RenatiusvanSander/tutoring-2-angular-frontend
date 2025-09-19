@@ -1,0 +1,27 @@
+<div class="margin--left-8rem">
+    <div>
+        <div *ngIf="message">{{message}}</div>
+        <div>
+            <button class="btn btn-primary mt-3 mb-5" [routerLink]="['/settings','address','add-address',userId]">New Address</button>
+            <router-outlet></router-outlet>
+        </div>
+        <br />
+        <div *ngIf="dataLoaded">
+            <div class="row row-striped" *ngFor="let addressItem of addresses; let addressPosition = index">
+                <div class="col-10">
+                    <div class="row">
+                        <div class="col-5">
+                            <p class="mb-0">Straße und Hausnummer : {{addressItem.addressStreet}} {{addressItem.addressHouseNo}}</p>
+                            <p class="mb-0">Postleitzahl und Ort: {{addressItem.addressZipCode}} {{addressItem.place}}</p>
+                        </div>
+                        <div class="col-5">
+                            <button class="btn btn-warning" [routerLink]="['/settings','address','edit-address',addressItem.id]">Edit address</button><button class="btn btn-danger" [routerLink]="['/settings','address','delete-address',addressItem.id]">Delete address</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <router-outlet />
+</div>
+
