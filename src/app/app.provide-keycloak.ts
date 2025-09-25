@@ -27,7 +27,7 @@ export const provideKeycloakApp = () =>
         features: [
             withAutoRefreshToken({
                 onInactivityTimeout: 'logout',
-                sessionTimeout: 60000
+                sessionTimeout: 30000
             })
         ],
         providers: [

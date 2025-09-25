@@ -1,0 +1,42 @@
+<div class="margin--left-8rem">
+
+    <h1>Add address</h1>
+    <br />
+    <br />
+
+    <form #userForm="ngForm">
+        <div class="form-group">
+            <label for="street">Street: </label>
+            <input #streetField="ngModel" type="text" class="form-control" id="street" placeholder="Street" [(ngModel)]="addressInput.addressStreet" name="street"
+            required (change)="checkIfStreetIsValid()">
+            <div class="alert alert-danger" *ngIf="streetField.invalid && streetField.touched">Street is required.</div>
+            <div class="alert alert-danger" *ngIf="!streetIsValid && streetField.touched">Street cannot be blank.</div>
+        </div>
+        <br />
+        <div class="form-group">
+            <label for="houseNo">House number: </label>
+            <input #houseNumberField="ngModel" type="text" class="form-control" id="houseNo" placeholder="House number" [(ngModel)]="addressInput.addressHouseNo" name="houseNo"
+            required (change)="checkIfHouseNumberIsValid()">
+            <div class="alert alert-danger" *ngIf="houseNumberField.invalid && houseNumberField.touched">House number is required.</div>
+            <div class="alert alert-danger" *ngIf="!houseNumberIsValid && houseNumberField.touched">House number cannot be blank.</div>
+        </div>
+        <br />
+        <div class="form-group">
+            <label for="zipCode">Zip Code: </label>
+            <input #zipCodeField="ngModel" type="text" class="form-control" id="zipCode" placeholder="Zip Code" [(ngModel)]="addressInput.addressZipCode" name="zipCode"
+            required (change)="checkIfHouseNumberIsValid()">
+            <div class="alert alert-danger" *ngIf="zipCodeField.invalid && zipCodeField.touched">Zip Code is required.</div>
+            <div class="alert alert-danger" *ngIf="!houseNumberIsValid && zipCodeField.touched">Zip Code cannot be blank.</div>
+        </div>
+        <br />
+        <div class="form-group">
+            <label for="place">Place: </label>
+            <input #placeField="ngModel" type="text" class="form-control" id="place" placeholder="Place" [(ngModel)]="addressInput.place" name="place"
+            required (change)="checkIfPlaceIsValid()">
+            <div class="alert alert-danger" *ngIf="placeField.invalid && placeField.touched">Place is required.</div>
+            <div class="alert alert-danger" *ngIf="!placeIsValid && placeField.touched">Place cannot be blank.</div>
+        </div>
+        <br/>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!streetIsValid || !houseNumberIsValid || !houseNumberIsValid || !placeIsValid">Save</button>
+    </form>
+</div>

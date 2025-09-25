@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
-import { User } from '../model/user';
+import { DataService } from '../services/data.service';
+import { User } from '../models/user';
 import { map } from 'rxjs';
 
 @Component({
@@ -12,13 +12,11 @@ import { map } from 'rxjs';
 export class OverviewComponent implements OnInit {
 
   user: User;
-  id : number;
   dataLoaded = false;
   message = '';
 
   constructor(private dataService: DataService) {
     this.user = new User();
-    this.id = 1;
   }
 
   ngOnInit(): void {
@@ -27,7 +25,7 @@ export class OverviewComponent implements OnInit {
 
   loadData() {
     this.message = 'Loading data...';
-    this.dataService.getUser(+this.id)
+    this.dataService.getUser()
     .pipe(map (user => {
       return user;
     }))
