@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpResponse } from "@angular/common/http";
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpResponse, HttpEvent } from "@angular/common/http";
 import { Observable, of } from "rxjs";
 import { tap } from "rxjs/operators";
 import { CacheService } from "../services/cache.service";
@@ -11,38 +11,22 @@ export class CachingInterceptor implements HttpInterceptor {
 
   constructor(private cacheService: CacheService) {}
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    if (!this.canCacheRequest(req)) {
+      return next.handle(req);
+    }
 
-    const cacheKey = this.createCacheKey(req.urlWithParams, req.body);
-    const cachedResponse = this.cacheService.getCache(cacheKey);
+    const cachedResponse = this.cacheService.getCache(req.url);
     if (cachedResponse) {
-      return of(cachedResponse);// Return cached response if available
-    }
-
-    return next.handle(req).pipe(
+      return of(cachedResponse as HttpResponse<any>);
+    } else {
+      return next.handle(req).pipe(
       tap((event) => {
-        if (event instanceof HttpResponse) {
-          if (this.canCacheRequest(req)) this.cacheService.setCache(cacheKey, {data : event , maxAge: 90000});
+        if (event instanceof HttpResponse && this.canCacheRequest(req)) {
+          this.cacheService.setCache(req.url, event);
         }
-      })
-    );
-  }
-  private createCacheKey(url: string, body: any): string {
-    const bodyHash = this.simpleHash(JSON.stringify(body)).toString(); // with hash we can do it with only small key
-
-    return `${url}_${bodyHash}`;
-  }
-
-  /** Generates a Hash to be appended with key */
-  private simpleHash(str: string): string {
-    let hash = 0;
-    if (str.length === 0) return hash.toString();
-    for (let i = 0; i < str.length; i++) {
-      const char = str.charCodeAt(i);
-      hash = (hash << 5) - hash + char;
-      hash = hash & hash; // Convert to 32bit integer
+      }));
     }
-    return hash.toString();
   }
 
   private canCacheRequest(request: HttpRequest<any>): boolean {

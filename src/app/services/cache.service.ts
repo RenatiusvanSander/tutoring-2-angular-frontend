@@ -1,32 +1,25 @@
+import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CacheService {
-  private cache = new Map<string, any>();
+  private cache = new Map<string, HttpResponse<any>>();
 
   constructor() {}
 
-  setCache(key: string, data: any) {
-    // this.cache = new Map(JSON.parse(localStorage['tutoring3']));
-    this.cache.set(key, data);
-    // localStorage['tutoring3'] = JSON.stringify(Array.from(this.cache.entries()));
+  setCache(key: string, response: HttpResponse<any>) {
+    this.cache.set(key, response);
   }
 
-  getCache(key: string): any {
-    // this.cache = new Map(JSON.parse(localStorage['tutoring3']));
-    const data = this.cache.get(key);
-    if (data) {
-      return data;
+  getCache(key: string): HttpResponse<any> | null {
+    const response = this.cache.get(key);
+    if (response) {
+      return response as HttpResponse<any>;
     }
 
     return null;
   }
 
-  deleteCache(key: string) {
-    // this.cache = new Map(JSON.parse(localStorage['tutoring3']));
-    this.cache.delete(key);
-    // localStorage['tutoring3'] = JSON.stringify(Array.from(this.cache.entries()));
-  }
 }
