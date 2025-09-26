@@ -22,7 +22,7 @@ import { PhoneComponent } from './phone/phone.component';
 import { TutoringComponent } from './tutoring/tutoring.component';
 import { OverviewComponent } from './overview/overview.component';
 import { includeBearerTokenInterceptor } from 'keycloak-angular';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 import { provideKeycloakApp } from './app.provide-keycloak';
 import { SettingsComponent } from './settings/settings.component';
 import { AddressComponent } from './settings/address/address/address.component';
@@ -31,6 +31,7 @@ import { EditAddressComponent } from './settings/Address/edit-address/edit-addre
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DeleteAddressComponent } from './settings/address/delete-address/delete-address.component';
+import { CachingInterceptor } from './interceptors/caching.interceptor';
 
 @NgModule({
   declarations: [
@@ -69,8 +70,13 @@ import { DeleteAddressComponent } from './settings/address/delete-address/delete
   providers: [
     provideRouter(app_routes),
     provideKeycloakApp(),
-    provideHttpClient(withInterceptors([includeBearerTokenInterceptor])),
+    provideHttpClient(withInterceptors([includeBearerTokenInterceptor]),withInterceptorsFromDi()),
     provideZoneChangeDetection({ eventCoalescing: true }),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CachingInterceptor,
+      multi: true,
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -3,10 +3,12 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpResponse } from "@angula
 import { Observable, of } from "rxjs";
 import { tap } from "rxjs/operators";
 import { CacheService } from "../services/cache.service";
-import { canCacheRequest } from "app/utils/cache.requests.utils";
 
 @Injectable()
 export class CachingInterceptor implements HttpInterceptor {
+
+  private static apiUrl: string = 'http://localhost:8082/tutoring3/api';
+
   constructor(private cacheService: CacheService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
@@ -20,7 +22,7 @@ export class CachingInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       tap((event) => {
         if (event instanceof HttpResponse) {
-          if (canCacheRequest(req)) this.cacheService.setCache(cacheKey, {data : event , maxAge: 90000});
+          if (this.canCacheRequest(req)) this.cacheService.setCache(cacheKey, {data : event , maxAge: 90000});
         }
       })
     );
@@ -41,5 +43,12 @@ export class CachingInterceptor implements HttpInterceptor {
       hash = hash & hash; // Convert to 32bit integer
     }
     return hash.toString();
+  }
+
+  private canCacheRequest(request: HttpRequest<any>): boolean {
+    const isGet: boolean = request.method === 'GET';
+    const containsApiUrl: boolean = request.url.includes(CachingInterceptor.apiUrl);
+
+    return isGet && containsApiUrl;
   }
 }
