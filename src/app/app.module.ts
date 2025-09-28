@@ -32,6 +32,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DeleteAddressComponent } from './settings/address/delete-address/delete-address.component';
 import { CachingInterceptor } from './interceptors/caching.interceptor';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { CachingInterceptor } from './interceptors/caching.interceptor';
     AddressComponent,
     AddAddressComponent,
     EditAddressComponent,
-    DeleteAddressComponent
+    DeleteAddressComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

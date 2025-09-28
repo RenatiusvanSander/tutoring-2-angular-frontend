@@ -10,7 +10,7 @@ import { AvailableSpacesComponent } from "./available-spaces/available-spaces.co
 import { DisclaimerComponent } from "./disclaimer/disclaimer.component";
 import { ContactComponent } from "./contact/contact.component";
 import { OverviewComponent } from "./overview/overview.component";
-import { canActivateByAuthenticated } from "./auth.guard";
+import { canActivateByAuthenticated } from "./authguards/auth.guard";
 import { SettingsComponent } from "./settings/settings.component";
 import { UserResolver } from "./resolvers/user.resolver";
 import { AddressComponent } from "./settings/address/address/address.component";
@@ -18,6 +18,8 @@ import { AddAddressComponent } from "./settings/Address/add-address/add-address.
 import { EditAddressComponent } from "./settings/Address/edit-address/edit-address.component";
 import { AddressResolver } from "./resolvers/address.resolver";
 import { DeleteAddressComponent } from "./settings/address/delete-address/delete-address.component";
+import { AdminComponent } from "./admin/admin.component";
+import { adminGuard } from "./authguards/admin.guard";
 
 export const app_routes: Routes = [
     {
@@ -71,5 +73,8 @@ export const app_routes: Routes = [
     ,
     {
         path: 'settings/address/delete-address/:id', component: DeleteAddressComponent, canActivate: [canActivateByAuthenticated]
+    },
+    {
+        path: 'admin', component: AdminComponent, canActivate: [adminGuard], data: {roles: 'client_admin'}
     }
 ];
