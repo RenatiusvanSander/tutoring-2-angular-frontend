@@ -1,6 +1,5 @@
 import { inject } from '@angular/core';
 import { CanActivateFn } from '@angular/router';
-import { KeycloakService } from 'keycloak-angular';
 import Keycloak from 'keycloak-js';
 
 export const adminGuard: CanActivateFn = (route, state) => {
