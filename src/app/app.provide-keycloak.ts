@@ -33,7 +33,7 @@ export const provideKeycloakApp = () =>
         providers: [
             {
                 provide: INCLUDE_BEARER_TOKEN_INTERCEPTOR_CONFIG,
-                useValue: [bearerTokenInterceptorCondition] // Specify conditions for adding the Bearer token
+                useValue: [bearerTokenInterceptorCondition]
             },
             AutoRefreshTokenService,
             UserActivityService

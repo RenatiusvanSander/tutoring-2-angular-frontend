@@ -25,14 +25,15 @@ import { includeBearerTokenInterceptor } from 'keycloak-angular';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 import { provideKeycloakApp } from './app.provide-keycloak';
 import { SettingsComponent } from './settings/settings.component';
-import { AddressComponent } from './settings/address/address/address.component';
+import { AddressComponent } from './settings/Address/address/address.component';
 import { AddAddressComponent } from './settings/Address/add-address/add-address.component';
 import { EditAddressComponent } from './settings/Address/edit-address/edit-address.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { DeleteAddressComponent } from './settings/address/delete-address/delete-address.component';
+import { DeleteAddressComponent } from './settings/Address/delete-address/delete-address.component';
 import { CachingInterceptor } from './interceptors/caching.interceptor';
 import { AdminComponent } from './admin/admin.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { AdminComponent } from './admin/admin.component';
     AddAddressComponent,
     EditAddressComponent,
     DeleteAddressComponent,
-    AdminComponent
+    AdminComponent,
+    ForbiddenComponent
   ],
   imports: [
     BrowserModule,

@@ -13,13 +13,14 @@ import { OverviewComponent } from "./overview/overview.component";
 import { canActivateByAuthenticated } from "./authguards/auth.guard";
 import { SettingsComponent } from "./settings/settings.component";
 import { UserResolver } from "./resolvers/user.resolver";
-import { AddressComponent } from "./settings/address/address/address.component";
+import { AddressComponent } from "./settings/Address/address/address.component";
 import { AddAddressComponent } from "./settings/Address/add-address/add-address.component";
 import { EditAddressComponent } from "./settings/Address/edit-address/edit-address.component";
 import { AddressResolver } from "./resolvers/address.resolver";
-import { DeleteAddressComponent } from "./settings/address/delete-address/delete-address.component";
+import { DeleteAddressComponent } from "./settings/Address/delete-address/delete-address.component";
 import { AdminComponent } from "./admin/admin.component";
 import { adminGuard } from "./authguards/admin.guard";
+import { ForbiddenComponent } from "./forbidden/forbidden.component";
 
 export const app_routes: Routes = [
     {
@@ -76,5 +77,8 @@ export const app_routes: Routes = [
     },
     {
         path: 'admin', component: AdminComponent, canActivate: [adminGuard], data: {roles: 'client_admin'}
+    },
+    {
+        path: 'forbidden', component: ForbiddenComponent
     }
 ];

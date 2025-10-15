@@ -3,13 +3,21 @@
     <div class="bg-warning p-5" *ngIf="message">{{message}}</div>
 
     <div *ngIf="dataLoaded">
+        <div>
+            <h1 class="heading1">Pers&ouml;nliche &Uuml;bersicht</h1>
+        </div>
         <div class="row">
-            <h1>Guten Tag {{user.givenName}}.</h1>
+            <h3>Guten Tag {{user.givenName}}.</h3>
             <br>Willkommen zur&uuml;ck. Hier ist deine pers&ouml;nliche &Uuml;bersicht.
         </div>
 
-        <a [routerLink]="['/settings', user.userId]">Settings</a>
-        <router-outlet></router-outlet>
+        <div>
+            <div></div>
+            <div>
+                <a [routerLink]="['/settings', user.userId]">Settings</a>
+                <router-outlet></router-outlet>
+            </div>
+        </div>
     </div>
 
 </div>
