@@ -1465,8 +1465,9 @@ z-index: 1000;
   width: 80%;
   box-shadow: 2px 2px 2px 4px lightblue;
   word-wrap: break-word;
+  background-color: rgba(7, 141, 224, 0.387);
+  margin: 1rem;
 }
-
 .conten-box--header-content {
   display: flex;
   flex-direction: row;
@@ -1479,7 +1480,18 @@ z-index: 1000;
   border: solid 1px rgba(7, 141, 224, 0.387);
   background-color: rgba(202, 242, 255, 0.957);
 }
-
+.content-box--header-content--toc {
+  display: block;
+  text-align: center;
+  box-sizing: border-box;
+  padding-bottom: 0;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 10px;
+  min-height: 31px;
+  border: solid 1px rgba(7, 141, 224, 0.387);
+  background-color: rgba(202, 242, 255, 0.957);
+}
 .content-box--header-content--flex-item {
   flex-grow: 1;
 }
@@ -1488,6 +1500,38 @@ z-index: 1000;
   width: 768px;
   min-height: 12pt;
   background-color: rgba(202, 242, 255, 0.957);
+}
+.content-box--body-content--toc {
+  margin: 0 auto 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 4px;
+  box-sizing: border-box;
+  background-color: rgba(228, 248, 255, 0.957);
+}
+.toc-line-start {
+  box-sizing: border-box;
+  font-size: 12pt;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  padding: 16px;
+}
+.toc-line {
+  box-sizing: border-box;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  font-size: 12pt;
+  padding: 16px;
+}
+.toc-line-end {
+  box-sizing: border-box;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  font-size: 12pt;
+  padding: 16px;
+}
+.toc-line-border {
+  border-top: 4px solid white;
 }
 .tutoring3-button {
   background-color: #a0aef3;
@@ -1563,4 +1607,8 @@ z-index: 1000;
 }
 .main-content {
   height: 100vh;
+}
+
+.view-width-10 {
+  width: 10vw;
 }

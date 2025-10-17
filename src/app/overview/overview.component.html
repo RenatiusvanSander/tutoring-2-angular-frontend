@@ -1,5 +1,5 @@
 
-<div class="margin--left-8rem">
+<div class="margin--left-8rem main-content">
     <div class="bg-warning p-5" *ngIf="message">{{message}}</div>
 
     <div *ngIf="dataLoaded">
@@ -10,12 +10,18 @@
             <h3>Guten Tag {{user.givenName}}.</h3>
             <br>Willkommen zur&uuml;ck. Hier ist deine pers&ouml;nliche &Uuml;bersicht.
         </div>
+        <br />
 
-        <div>
-            <div></div>
-            <div>
+        <div class="content-box--main-frame-rounded view-width-10">
+            <div class="content-box--header-content--toc">Hyperlinks to</div>
+            <div class="toc-line-start">
                 <a [routerLink]="['/settings', user.userId]">Settings</a>
-                <router-outlet></router-outlet>
+            </div>
+            <div class="toc-line toc-line-border">
+                <a [routerLink]="['/welcome']">Welcome</a>
+            </div>
+            <div class="toc-line toc-line-border">
+                <a [routerLink]="['/Booking']">Book Appointment</a>
             </div>
         </div>
     </div>
