@@ -1764,3 +1764,59 @@ z-index: 1000;
 .list--background {
   background-color: #cde0f9;
 }
+
+.black-select {
+  min-inline-size: 14ch;
+  justify-content: space-between;
+  color: #fff;
+  padding: 0.75rem;
+  width: 30rem;
+}
+.black-select,
+.black-select::picker(select) {
+  appearance: base-select;
+  border: none;
+  background-color: #222;
+  line-height: 1.6;
+  color: #fff;
+}
+.black-select::picker(select) {
+  margin-block-start: 0.125rem;
+  background-color: transparent;
+}
+.black-select::picker-icon {
+  display: none;
+}
+.black-select .picker {
+  transition: rotate 0.3s ease;
+}
+.black-select .picker:open .black-select .picker {
+  rotate: 180deg;
+}
+.black-select selectedcontent > * {
+  transition: translate 1s var(--spring-easing), opacity 1s;
+
+  @starting-style {
+    opacity: 0;
+    translate: 0% 100%;
+  }
+}
+
+.black-select option {
+  border: none;
+  border-radius: 1rem;
+  margin: 9px;
+  background-color: #222;
+  line-height: 1.6;
+  padding: 0.75rem;
+}
+.black-select option:hover {
+  background-color: aqua;
+}
+.black-select option::checkmark {
+  padding: 2px;
+}
+.black-select option:checked {
+  outline: solid 2px gray;
+  outline-offset: 2px;
+}

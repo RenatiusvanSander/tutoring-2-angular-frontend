@@ -1,0 +1,19 @@
+<div class="margin--left-8rem main-content">
+    <h1 class="heading1">Dienstvertrag</h1>
+    <br />
+    <br />
+
+    <div *ngIf="message">{{message}}</div>
+
+    <div *ngIf="dataLoaded">
+        <div class="margin--left-1rem borders--border-bottom list--background padding-top-1rem margin--left-1rem tutoring3-margin-bottom" *ngFor="let serviceContract of serviceContracts; let serviceContractPosition = index">
+            <div class="margin--left-1rem font-size--26">
+                <p class="mb-0">Name: {{serviceContract.serviceContractName}}</p>
+                <p class="mb-0">Beschreibung: {{serviceContract.serviceContractDescription}}</p>
+            </div>
+            <div class="flex margin-horizontal-1rem">
+                <button class="tutoring3-button tutoring3-button--user-select-none tutoring3-button--border-radius-25 tutoring3-button--button margin--left-1rem">Edit ServiceContract</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -40,7 +40,6 @@ export class AddAddressComponent implements OnInit{
     this.activatedRoute.params.subscribe(params => {
       this.userId = Number(params['userId']);
     });
-    console.log('userId is: ' + this.userId);
   }
 
   checkIfStreetIsValid() {
@@ -85,10 +84,13 @@ export class AddAddressComponent implements OnInit{
     address.userId = this.userId;
 
     if(address != null && address !== undefined && this.userId > 0) {
-      this.addressDataSerevice.persistAddress(address).subscribe(
-        response => console.log('Post send successful: ', response),
-        error => console.log('Error: ', error)
-      );
+      this.addressDataSerevice.persistAddress(address).subscribe({
+        error: (e) => console.error(e),
+        complete: () => {
+          console.info('Address was posted successful.');
+          this.addressInput = new Address();
+        }
+      });
     }
   }
 }
