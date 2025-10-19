@@ -1,6 +1,13 @@
-<div class="margin--left-8rem">
-    <p>Settings works!</p>
-
-    <p>{{user.givenName}}</p>
-    <a [routerLink]="['/settings','address','address',user.userId]">Manage your Addresses</a>
+<div class="margin--left-8rem main-content">
+    <h1 class="heading1">Einstellungen</h1>
+    <br />
+    <div class="content-box--main-frame-rounded view-width-10">
+        <div class="content-box--header-content--toc">Hyperlinks to</div>
+        <div class="toc-line-start borders--border-bottom-2">
+            <a [routerLink]="['/settings','address','address',user.userId]">Adressverwaltung</a>
+        </div>
+        <div class="toc-line borders--border-bottom-2">
+            <a [routerLink]="['/overview']">Zur&uuml;ck zu Overview</a>
+        </div>
+    </div>
 </div>

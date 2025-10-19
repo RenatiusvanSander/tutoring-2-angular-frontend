@@ -1,23 +1,20 @@
-<div class="margin--left-8rem">
+<div class="margin--left-8rem main-content">
+    <h1 class="heading1">Ihre Adressen</h1>
+    <br />
     <div>
         <div *ngIf="message">{{message}}</div>
         <div>
-            <button class="btn btn-primary mt-3 mb-5" [routerLink]="['/settings','address','add-address',userId]">New Address</button>
-            <router-outlet></router-outlet>
+            <button class="tutoring3-button tutoring3-button--user-select-none tutoring3-button--border-radius-25 tutoring3-button--button margin--left-1rem" [routerLink]="['/settings','address','add-address',userId]">New Address</button>
         </div>
         <br />
         <div *ngIf="dataLoaded">
-            <div class="row row-striped" *ngFor="let addressItem of addresses; let addressPosition = index">
-                <div class="col-10">
-                    <div class="row">
-                        <div class="col-5">
-                            <p class="mb-0">Straße und Hausnummer : {{addressItem.addressStreet}} {{addressItem.addressHouseNo}}</p>
-                            <p class="mb-0">Postleitzahl und Ort: {{addressItem.addressZipCode}} {{addressItem.place}}</p>
-                        </div>
-                        <div class="col-5">
-                            <button class="btn btn-warning" [routerLink]="['/settings','address','edit-address',addressItem.id]">Edit address</button><button class="btn btn-danger" [routerLink]="['/settings','address','delete-address',addressItem.id]">Delete address</button>
-                        </div>
-                    </div>
+            <div class="margin--left-1rem borders--border-bottom list--background padding-top-1rem margin--left-1rem tutoring3-margin-bottom" *ngFor="let addressItem of addresses; let addressPosition = index">
+                <div class="margin--left-1rem font-size--26">
+                    <p class="mb-0">Straße und Hausnummer : {{addressItem.addressStreet}} {{addressItem.addressHouseNo}}</p>
+                    <p class="mb-0">Postleitzahl und Ort: {{addressItem.addressZipCode}} {{addressItem.place}}</p>
+                </div>
+                <div class="flex margin-horizontal-1rem">
+                    <button class="tutoring3-button tutoring3-button--user-select-none tutoring3-button--border-radius-25 tutoring3-button--button margin--left-1rem" [routerLink]="['/settings','address','edit-address',addressItem.id]">Edit address</button><button class="tutoring3-button tutoring3-button--user-select-none tutoring3-button--border-radius-25 tutoring3-button--button margin--left-1rem" [routerLink]="['/settings','address','delete-address',addressItem.id]">Delete address</button>
                 </div>
             </div>
         </div>

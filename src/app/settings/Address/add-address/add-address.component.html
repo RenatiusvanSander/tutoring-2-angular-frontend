@@ -1,42 +1,50 @@
-<div class="margin--left-8rem">
+<div class="margin--left-8rem main-content">
 
-    <h1>Add address</h1>
+    <h1 class="heading1">Add address</h1>
     <br />
     <br />
 
-    <form #userForm="ngForm">
+    <form class="form" #userForm="ngForm">
         <div class="form-group">
-            <label for="street">Street: </label>
-            <input #streetField="ngModel" type="text" class="form-control" id="street" placeholder="Street" [(ngModel)]="addressInput.addressStreet" name="street"
-            required (change)="checkIfStreetIsValid()">
+            <label for="street">Straße / Street: </label>
+            <label class="custom-field one">
+                <input type="text" placeholder=" " #streetField="ngModel" type="text" id="street" [(ngModel)]="addressInput.addressStreet" name="street" required (change)="checkIfStreetIsValid()">
+                <span class="placeholder">Straße eingeben</span>
+            </label>
             <div class="alert alert-danger" *ngIf="streetField.invalid && streetField.touched">Street is required.</div>
-            <div class="alert alert-danger" *ngIf="!streetIsValid && streetField.touched">Street cannot be blank.</div>
+            <div class="alert alert-danger" *ngIf="!streetIsValid && streetField.touched">Street cannot be blank.</div>            
         </div>
         <br />
         <div class="form-group">
-            <label for="houseNo">House number: </label>
-            <input #houseNumberField="ngModel" type="text" class="form-control" id="houseNo" placeholder="House number" [(ngModel)]="addressInput.addressHouseNo" name="houseNo"
-            required (change)="checkIfHouseNumberIsValid()">
+            <label for="houseNo">Hausnummer / House number: </label>
+            <label class="custom-field one">
+                <input type="text" placeholder=" " #houseNumberField="ngModel" type="text" class="form-control" id="houseNo" [(ngModel)]="addressInput.addressHouseNo" name="houseNo" required (change)="checkIfHouseNumberIsValid()">
+                <span class="placeholder">Hausnummer eingeben</span>
+            </label>
             <div class="alert alert-danger" *ngIf="houseNumberField.invalid && houseNumberField.touched">House number is required.</div>
             <div class="alert alert-danger" *ngIf="!houseNumberIsValid && houseNumberField.touched">House number cannot be blank.</div>
         </div>
         <br />
         <div class="form-group">
-            <label for="zipCode">Zip Code: </label>
-            <input #zipCodeField="ngModel" type="text" class="form-control" id="zipCode" placeholder="Zip Code" [(ngModel)]="addressInput.addressZipCode" name="zipCode"
-            required (change)="checkIfHouseNumberIsValid()">
+            <label for="zipCode">PLZ / Zip Code: </label>
+            <label class="custom-field one">
+                <input type="text" placeholder=" " #zipCodeField="ngModel" type="text" id="zipCode" [(ngModel)]="addressInput.addressZipCode" name="zipCode" required (change)="checkIfHouseNumberIsValid()">
+                <span class="placeholder">Postleitzahl eingeben</span>
+            </label>
             <div class="alert alert-danger" *ngIf="zipCodeField.invalid && zipCodeField.touched">Zip Code is required.</div>
             <div class="alert alert-danger" *ngIf="!houseNumberIsValid && zipCodeField.touched">Zip Code cannot be blank.</div>
         </div>
         <br />
         <div class="form-group">
-            <label for="place">Place: </label>
-            <input #placeField="ngModel" type="text" class="form-control" id="place" placeholder="Place" [(ngModel)]="addressInput.place" name="place"
-            required (change)="checkIfPlaceIsValid()">
+            <label for="place">Ortschaft / Place: </label>
+            <label class="custom-field one">
+                <input type="text" placeholder=" " #placeField="ngModel" type="text" id="place" [(ngModel)]="addressInput.place" name="place" required (change)="checkIfPlaceIsValid()">
+                <span class="placeholder">Ortschaft eingeben</span>
+            </label>
             <div class="alert alert-danger" *ngIf="placeField.invalid && placeField.touched">Place is required.</div>
             <div class="alert alert-danger" *ngIf="!placeIsValid && placeField.touched">Place cannot be blank.</div>
         </div>
         <br/>
-        <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!streetIsValid || !houseNumberIsValid || !houseNumberIsValid || !placeIsValid">Save</button>
+        <button type="button" class="tutoring3-button tutoring3-button--user-select-none tutoring3-button--border-radius-25 tutoring3-button--button" (click)="onSubmit()" [disabled]="!streetIsValid || !houseNumberIsValid || !houseNumberIsValid || !placeIsValid">Save</button>
     </form>
 </div>
