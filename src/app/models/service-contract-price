@@ -1,0 +1,16 @@
+export class ServiceContractPrice {
+    id!: number;
+    userId!: number;
+    serviceContractId!: number;
+    priceId!: number;
+
+    static fromHttp(serviceContractPrice : ServiceContractPrice) : ServiceContractPrice {
+        const newServiceContractPrice = new ServiceContractPrice();
+        newServiceContractPrice.id = serviceContractPrice.id;
+        newServiceContractPrice.userId = serviceContractPrice.userId;
+        newServiceContractPrice.serviceContractId = serviceContractPrice.serviceContractId;
+        newServiceContractPrice.priceId = serviceContractPrice.priceId;
+
+        return newServiceContractPrice;
+    }
+}
