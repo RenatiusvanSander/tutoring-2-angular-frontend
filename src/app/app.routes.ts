@@ -21,6 +21,7 @@ import { DeleteAddressComponent } from "./settings/Address/delete-address/delete
 import { AdminComponent } from "./admin/admin.component";
 import { adminGuard } from "./authguards/admin.guard";
 import { ForbiddenComponent } from "./forbidden/forbidden.component";
+import { ServiceContractPriceComponent } from "./overview/service-contract-price/service-contract-price.component";
 
 export const app_routes: Routes = [
     {
@@ -80,5 +81,8 @@ export const app_routes: Routes = [
     },
     {
         path: 'forbidden', component: ForbiddenComponent
+    },
+    {
+        path: 'overview/service-contract-price', component: ServiceContractPriceComponent, canActivate: [canActivateByAuthenticated]
     }
 ];

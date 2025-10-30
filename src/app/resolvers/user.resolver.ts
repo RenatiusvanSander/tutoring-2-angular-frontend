@@ -24,7 +24,8 @@ export class UserResolver implements Resolve<User> {
     state: RouterStateSnapshot
   ): Observable<User> {
     let id = Number(route.paramMap.get('id'));
-
+    console.log('UserResolver');
+    console.log('UserResolver ' + id);
     return this.service.getByUserId(id);
   }
 }
