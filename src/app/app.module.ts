@@ -37,6 +37,7 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { ServiceContractPriceComponent } from './overview/service-contract-price/service-contract-price.component';
 import { ServiceContractComponent } from './service-contract/service-contract.component';
 import { PriceComponent } from './price/price.component';
+import { AddServiceContractComponent } from './service-contract/add-service-contract/add-service-contract.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { PriceComponent } from './price/price.component';
     ForbiddenComponent,
     ServiceContractPriceComponent,
     ServiceContractComponent,
-    PriceComponent
+    PriceComponent,
+    AddServiceContractComponent
   ],
   imports: [
     BrowserModule,

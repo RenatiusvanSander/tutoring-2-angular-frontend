@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ServiceContractDataService {
 
-  static apiUrl: String = 'http://localhost:8082/tutoring3/api/servicecontracts';
+  private static apiUrl: String = 'http://localhost:8082/tutoring3/api/servicecontracts';
 
   constructor(private http: HttpClient) { }
 
@@ -16,8 +16,12 @@ export class ServiceContractDataService {
       return this.http.post<ServiceContract>(ServiceContractDataService.apiUrl + '/save-service-conract', serviceContract);
   }
 
-  getServiceContractById() {}
+  getServiceContractById(id: number): Observable<ServiceContract> {
+    return this.http.get<ServiceContract>(ServiceContractDataService.apiUrl + '/get-service-contract-by-id/' + id)
+  }
 
-  getServiceContracts() {}
+  getServiceContracts(): Observable<ServiceContract> {
+    return this.http.get<ServiceContract>(ServiceContractDataService.apiUrl + '/get-service-conracts');
+  }
 
 }
