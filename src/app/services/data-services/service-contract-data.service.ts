@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ServiceContract } from '../../models/service-contract';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -20,8 +20,18 @@ export class ServiceContractDataService {
     return this.http.get<ServiceContract>(ServiceContractDataService.apiUrl + '/get-service-contract-by-id/' + id)
   }
 
-  getServiceContracts(): Observable<ServiceContract> {
-    return this.http.get<ServiceContract>(ServiceContractDataService.apiUrl + '/get-service-conracts');
+  getServiceContracts(): Observable<Array<ServiceContract>> {
+    return this.http.get<Array<ServiceContract>>(ServiceContractDataService.apiUrl + '/get-service-conracts')
+        .pipe(
+          map( data => {
+            const serviceContracts = new Array<ServiceContract>();
+            for(const serviceContract of data) {
+              serviceContracts.push(ServiceContract.fromHttp(serviceContract));
+            }
+    
+            return serviceContracts;
+          })
+        );
   }
 
 }

@@ -7,7 +7,7 @@ export class ServiceContract {
         const newServiceContract = new ServiceContract();
         newServiceContract.id = serviceContract.id;
         newServiceContract.serviceContractName = serviceContract.serviceContractName;
-        newServiceContract.serviceContractDescription = serviceContract.serviceContractName;
+        newServiceContract.serviceContractDescription = serviceContract.serviceContractDescription;
 
         return newServiceContract;
     }

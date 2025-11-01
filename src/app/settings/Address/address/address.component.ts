@@ -33,27 +33,16 @@ export class AddressComponent implements OnInit {
   }
 
   loadData(id: number) {
-    this.addressDataService.fetchAddressesByUserId(+id).subscribe(
-      next => {
-        this.addresses = next ?? new Array<Address>();
+    this.addressDataService.fetchAddressesByUserId(+id).subscribe({
+      next: (n) => {
+        this.addresses = n ?? new Array<Address>();
         this.dataLoaded = true;
         this.message = '';
-        /*
-        this.route.queryParams.subscribe(
-          (params) => {
-            const id = params['id'];
-            this.action = params['action'];
-    
-            if (id) {
-              this.selectedUser = this.addresses.find( address => address.id === +id) ?? new Address();
-            }
-          }
-        );
-        */
       },
-      error => {
+      error: (e) => {
         this.message = 'An error occured - please contact support';
+        console.error(e);
       }
-    );
+    });
   }
 }

@@ -23,6 +23,7 @@ import { adminGuard } from "./authguards/admin.guard";
 import { ForbiddenComponent } from "./forbidden/forbidden.component";
 import { ServiceContractPriceComponent } from "./overview/service-contract-price/service-contract-price.component";
 import { AddServiceContractComponent } from "./service-contract/add-service-contract/add-service-contract.component";
+import { ServiceContractComponent } from "./service-contract/service-contract.component";
 
 export const app_routes: Routes = [
     {
@@ -87,6 +88,9 @@ export const app_routes: Routes = [
         path: 'overview/service-contract-price', component: ServiceContractPriceComponent, canActivate: [canActivateByAuthenticated]
     },
     {
-        path: 'add-service-Contract', component: AddServiceContractComponent
+        path: 'add-service-contract', component: AddServiceContractComponent
+    },
+    {
+        path: 'service-contract', component: ServiceContractComponent
     }
 ];

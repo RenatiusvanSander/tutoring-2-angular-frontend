@@ -13,18 +13,18 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AddServiceContractComponent implements OnInit {
 
-    @Input()
-    serviceContractInput!: ServiceContract;
+  @Input()
+  serviceContractInput!: ServiceContract;
   
-    nameIsValid = false;
-    descriptionIsValid = false;
+  nameIsValid = false;
+  descriptionIsValid = false;
   
-    serviceContractForm: FormGroup;
+  serviceContractForm: FormGroup;
   
-    @Output()
-    serviceContractDataChangedEvent: EventEmitter<ServiceContract> = new EventEmitter();
+  @Output()
+  serviceContractDataChangedEvent: EventEmitter<ServiceContract> = new EventEmitter();
   
-    resetEventSubscription: Subscription;
+  resetEventSubscription: Subscription;
 
   constructor(private serviceContractService: ServiceContractDataService, private formBuilder: FormBuilder) {
     this.serviceContractInput = new ServiceContract();
@@ -39,7 +39,17 @@ export class AddServiceContractComponent implements OnInit {
     this.nameIsValid = this.serviceContractInput.serviceContractName.length > 1;
   }
 
+  checkIfDescriptionIsValid() {
+    this.descriptionIsValid = this.serviceContractInput.serviceContractDescription.length > 2;
+  }
+
   onSubmit() {
-    this.serviceContractInput = new ServiceContract();
+    this.serviceContractService.persistsServiceContract(this.serviceContractInput).subscribe({
+      error: (e) => console.error(e),
+      complete: () => {
+        console.info('ServiceContract was posted successful.');
+        this.serviceContractInput = new ServiceContract();
+      }
+    }); 
   }
 }
