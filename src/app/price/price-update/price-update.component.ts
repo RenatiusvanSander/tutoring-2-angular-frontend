@@ -16,12 +16,23 @@ export class PriceUpdateComponent implements OnInit {
   updatedPrice!: Price;
   isPriceUpdated: boolean = false;
 
+  updatePriceIsValid: boolean = false;
+  updatedPriceCurrencyIsValid: boolean = false;
+
   constructor(private priceDataService: PriceDataService, private activatedRoute: ActivatedRoute) {
     this.updatedPrice = new Price();
   }
 
   ngOnInit(): void {
     this.updatedPrice = this.activatedRoute.snapshot.data[0];
+  }
+
+  checkUpdatedPriceIsValid () {
+    this.updatePriceIsValid = !Number.isNaN(this.updatedPrice.price) && this.updatedPrice.price >= 13.00;
+  }
+
+  checkUpdatedPriceCurrencyIsValid() {
+    this.updatedPriceCurrencyIsValid = (this.updatedPrice.currency.length > 1) && (this.updatedPrice.currency.includes('EUR'));
   }
 
   updatePrice() {
