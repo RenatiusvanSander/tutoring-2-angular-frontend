@@ -38,6 +38,7 @@ import { ServiceContractPriceComponent } from './overview/service-contract-price
 import { ServiceContractComponent } from './service-contract/service-contract.component';
 import { PriceComponent } from './price/price.component';
 import { AddServiceContractComponent } from './service-contract/add-service-contract/add-service-contract.component';
+import { AddPriceComponent } from './price/add-price/add-price.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { AddServiceContractComponent } from './service-contract/add-service-cont
     ServiceContractPriceComponent,
     ServiceContractComponent,
     PriceComponent,
-    AddServiceContractComponent
+    AddServiceContractComponent,
+    AddPriceComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,28 @@
+<div class="margin--left-8rem main-content">
+    <h1 class="heading1">Add Price</h1>
+    <br />
+    <br />
+
+    <form class="form" #priceForm="ngForm">
+        <div class="form-group">
+            <label for="price">Preis: </label>
+            <label class="custom-field one">
+                <input type="text" placeholder=" " #priceField="ngModel" type="text" id="price" [(ngModel)]="priceInput.price" name="price" required (change)="checkIfPriceIsValid()">
+                <span class="placeholder">Preis eingeben</span>
+            </label>
+            <div class="alert alert-danger" *ngIf="priceField.invalid && priceField.touched">Price is required.</div>
+            <div class="alert alert-danger" *ngIf="!priceIsValid && priceField.touched">Price cannot be blank.</div>            
+        </div>
+        <div class="form-group">
+            <label for="currency">Currency: </label>
+            <label class="custom-field one">
+                <input type="text" placeholder=" " #currencyField="ngModel" type="text" id="currency" [(ngModel)]="priceInput.currency" name="currency" required (change)="checkIfCurrencyIsValid()">
+                <span class="placeholder">W&auml;hrung eingeben</span>
+            </label>
+            <div class="alert alert-danger" *ngIf="currencyField.invalid && currencyField.touched">Currency is required.</div>
+            <div class="alert alert-danger" *ngIf="!currencyIsValid && currencyField.touched">Currency cannot be blank.</div>            
+        </div>
+        <br/>
+        <button type="button" class="tutoring3-button tutoring3-button--user-select-none tutoring3-button--border-radius-25 tutoring3-button--button" (click)="onSubmit()" [disabled]="!priceIsValid || !currencyIsValid">Save</button>
+    </form>
+</div>

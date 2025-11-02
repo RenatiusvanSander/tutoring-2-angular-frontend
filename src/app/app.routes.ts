@@ -24,6 +24,8 @@ import { ForbiddenComponent } from "./forbidden/forbidden.component";
 import { ServiceContractPriceComponent } from "./overview/service-contract-price/service-contract-price.component";
 import { AddServiceContractComponent } from "./service-contract/add-service-contract/add-service-contract.component";
 import { ServiceContractComponent } from "./service-contract/service-contract.component";
+import { AddPriceComponent } from "./price/add-price/add-price.component";
+import { PriceComponent } from "./price/price.component";
 
 export const app_routes: Routes = [
     {
@@ -92,5 +94,11 @@ export const app_routes: Routes = [
     },
     {
         path: 'service-contract', component: ServiceContractComponent
+    },
+    {
+        path: 'add-price', component: AddPriceComponent
+    },
+    {
+        path: 'price', component: PriceComponent
     }
 ];
