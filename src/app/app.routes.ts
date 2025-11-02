@@ -26,6 +26,7 @@ import { AddServiceContractComponent } from "./service-contract/add-service-cont
 import { ServiceContractComponent } from "./service-contract/service-contract.component";
 import { AddPriceComponent } from "./price/add-price/add-price.component";
 import { PriceComponent } from "./price/price.component";
+import { PriceUpdateComponent } from "./price/price-update/price-update.component";
 
 export const app_routes: Routes = [
     {
@@ -100,5 +101,8 @@ export const app_routes: Routes = [
     },
     {
         path: 'price', component: PriceComponent
+    },
+    {
+        path: 'update-price/:id', component: PriceUpdateComponent
     }
 ];

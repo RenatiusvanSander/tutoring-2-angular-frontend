@@ -24,7 +24,7 @@ export class PriceUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.updatedPrice = this.activatedRoute.snapshot.data[0];
+    this.updatedPrice = this.activatedRoute.snapshot.data['id'];
   }
 
   checkUpdatedPriceIsValid () {

@@ -16,13 +16,13 @@
         <div class="form-group">
             <label for="currency">Currency: </label>
             <label class="custom-field one">
-                <input type="text" placeholder=" " #currencyField="ngModel" type="text" id="currency" [(ngModel)]="priceInput.currency" name="currency" required (change)="checkIfCurrencyIsValid()">
+                <input type="text" placeholder=" " #currencyField="ngModel" type="text" id="currency" [(ngModel)]="updatedPrice.currency" name="currency" required (change)="checkUpdatedPriceCurrencyIsValid()">
                 <span class="placeholder">W&auml;hrung eingeben</span>
             </label>
             <div class="alert alert-danger" *ngIf="currencyField.invalid && currencyField.touched">Currency is required.</div>
-            <div class="alert alert-danger" *ngIf="!currencyIsValid && currencyField.touched">Currency cannot be blank.</div>            
+            <div class="alert alert-danger" *ngIf="!updatedPriceCurrencyIsValid && currencyField.touched">Currency cannot be blank.</div>            
         </div>
         <br/>
-        <button type="button" class="tutoring3-button tutoring3-button--user-select-none tutoring3-button--border-radius-25 tutoring3-button--button" (click)="onSubmit()" [disabled]="!priceIsValid || !currencyIsValid">Save</button>
+        <button type="button" class="tutoring3-button tutoring3-button--user-select-none tutoring3-button--border-radius-25 tutoring3-button--button" (click)="updatePrice()" [disabled]="!updatePriceIsValid || !updatedPriceCurrencyIsValid">Save</button>
     </form>
 </div>
