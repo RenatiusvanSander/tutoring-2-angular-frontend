@@ -19,28 +19,25 @@ export class ServiceContractPriceDataService {
   getServiceContractPricesByUserId(userId: number): Observable<Array<ServiceContractPrice>> {
     return this.http.get<Array<ServiceContractPrice>>(ServiceContractPriceDataService.apiUrl + '/' + userId)
       .pipe(
-        map( data => {
-          const serviceContractPrices = new Array<ServiceContractPrice>();
-          for(const serviceContractPrice of data) {
-              serviceContractPrices.push(ServiceContractPrice.fromHttp(serviceContractPrice));
-          };
-    
-          return serviceContractPrices;
-        })
+        map( data => this.mappingArray(data))
     );
   }
 
   getSevciceContractPricesToBeconfirmed(): Observable<Array<ServiceContractPrice>> {
-    this.http.get<Array<ServiceContractPrice>>(ServiceContractPriceDataService.apiUrl + '').pipe(
-        map( data => {
-          const serviceContractPrices = new Array<ServiceContractPrice>();
-          for(const serviceContractPrice of data) {
-              serviceContractPrices.push(ServiceContractPrice.fromHttp(serviceContractPrice));
-          };
-    
-          return serviceContractPrices;
-        }));
+    return this.http.get<Array<ServiceContractPrice>>(ServiceContractPriceDataService.apiUrl + '').pipe(
+        map( data => this.mappingArray(data)));
+  }
 
-    return of(new Array<ServiceContractPrice>);
+  mappingArray(serviceContractPricesData: Array<ServiceContractPrice>): Array<ServiceContractPrice> {
+    const serviceContractPrices = new Array<ServiceContractPrice>();
+    for(const serviceContractPrice of serviceContractPricesData) {
+      serviceContractPrices.push(ServiceContractPrice.fromHttp(serviceContractPrice));
+    };
+    
+    return serviceContractPrices;
+  }
+
+  updateServiceContractPrice(scp: ServiceContractPrice): Observable<ServiceContractPrice> {
+    return this.http.put<ServiceContractPrice>(ServiceContractPriceDataService.apiUrl + '', scp);
   }
 }
