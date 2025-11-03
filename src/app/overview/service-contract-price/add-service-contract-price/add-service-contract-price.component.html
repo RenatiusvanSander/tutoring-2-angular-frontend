@@ -1,0 +1,10 @@
+<div class="margin--left-8rem main-content">
+    <h1 class="heading1">Add Service Contract Price</h1>
+    <br />
+    <br />
+
+    <form class="form" #serviceContractPriceForm="ngForm">
+        <br/>
+        <button type="button" class="tutoring3-button tutoring3-button--user-select-none tutoring3-button--border-radius-25 tutoring3-button--button" (click)="onSubmit()" [disabled]="!priceIsValid || !serviceContractIsValid || !serviceContractPriceIsValid">Save</button>
+    </form>
+</div>

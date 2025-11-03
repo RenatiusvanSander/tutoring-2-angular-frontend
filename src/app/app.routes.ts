@@ -27,6 +27,7 @@ import { ServiceContractComponent } from "./service-contract/service-contract.co
 import { AddPriceComponent } from "./price/add-price/add-price.component";
 import { PriceComponent } from "./price/price.component";
 import { PriceUpdateComponent } from "./price/price-update/price-update.component";
+import { AddServiceContractPriceComponent } from "./overview/service-contract-price/add-service-contract-price/add-service-contract-price.component";
 
 export const app_routes: Routes = [
     {
@@ -89,6 +90,9 @@ export const app_routes: Routes = [
     },
     {
         path: 'overview/service-contract-price', component: ServiceContractPriceComponent, canActivate: [canActivateByAuthenticated]
+    },
+    {
+        path: 'overview/service-contract-price/add-service-contract-price', component: AddServiceContractPriceComponent, canActivate: [canActivateByAuthenticated]
     },
     {
         path: 'add-service-contract', component: AddServiceContractComponent
