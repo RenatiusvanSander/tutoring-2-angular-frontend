@@ -8,23 +8,23 @@ import { map, Observable, of } from 'rxjs';
 })
 export class ServiceContractPriceDataService {
 
-  private static apiUrl: String = 'http://localhost:8082/tutoring3/api';
+  private static apiUrl: String = 'http://localhost:8082/tutoring3/api/servicecontractprices';
 
   constructor(private http: HttpClient) {}
 
   persistServiceContractPrice(scp: ServiceContractPrice): Observable<ServiceContractPrice> {
-    return this.http.post<ServiceContractPrice>(ServiceContractPriceDataService.apiUrl + '', scp);
+    return this.http.post<ServiceContractPrice>(ServiceContractPriceDataService.apiUrl + '/save-service-contract-price', scp);
   }
 
   getServiceContractPricesByUserId(userId: number): Observable<Array<ServiceContractPrice>> {
-    return this.http.get<Array<ServiceContractPrice>>(ServiceContractPriceDataService.apiUrl + '/' + userId)
+    return this.http.get<Array<ServiceContractPrice>>(ServiceContractPriceDataService.apiUrl + '/get-service-contract-by-user-id/' + userId)
       .pipe(
         map( data => this.mappingArray(data))
     );
   }
 
-  getSevciceContractPricesToBeconfirmed(): Observable<Array<ServiceContractPrice>> {
-    return this.http.get<Array<ServiceContractPrice>>(ServiceContractPriceDataService.apiUrl + '').pipe(
+  getServciceContractPricesToBeconfirmed(): Observable<Array<ServiceContractPrice>> {
+    return this.http.get<Array<ServiceContractPrice>>(ServiceContractPriceDataService.apiUrl + '/get-not-confirmed-service-contract-prices').pipe(
         map( data => this.mappingArray(data)));
   }
 
@@ -38,6 +38,6 @@ export class ServiceContractPriceDataService {
   }
 
   updateServiceContractPrice(scp: ServiceContractPrice): Observable<ServiceContractPrice> {
-    return this.http.put<ServiceContractPrice>(ServiceContractPriceDataService.apiUrl + '', scp);
+    return this.http.put<ServiceContractPrice>(ServiceContractPriceDataService.apiUrl + '/update-service-contract-price', scp);
   }
 }
