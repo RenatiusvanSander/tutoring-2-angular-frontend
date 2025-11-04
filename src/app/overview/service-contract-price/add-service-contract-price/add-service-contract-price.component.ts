@@ -5,6 +5,8 @@ import { ServiceContract } from '../../../models/service-contract';
 import { Price } from '../../../models/price';
 import { ServiceContractPrice } from '../../../models/service-contract-price';
 import { PriceDataService } from '../../../services/data-services/price-data.service';
+import { DataService } from '../../../services/data.service';
+import { User } from '../../../models/user';
 
 @Component({
   selector: 'app-add-service-contract-price',
@@ -15,6 +17,8 @@ import { PriceDataService } from '../../../services/data-services/price-data.ser
 })
 export class AddServiceContractPriceComponent implements OnInit {
 
+  user!: User;
+
   @Input()
   serviceContracts!: Array<ServiceContract>;
 
@@ -24,18 +28,52 @@ export class AddServiceContractPriceComponent implements OnInit {
   @Input()
   serviceContractPriceInput!: ServiceContractPrice;
 
+  selectedServiceContract!: ServiceContract | undefined;
+
   priceIsValid: boolean = false;
+  currencyIsValid: boolean = false;
   serviceContractIsValid: boolean = false;
   serviceContractPriceIsValid: boolean = false;
 
-  constructor(private serviceContractService: ServiceContractDataService, private priceService: PriceDataService, private serviceContractPriceService: ServiceContractPriceDataService) {}
+  constructor(private serviceContractService: ServiceContractDataService, private priceService: PriceDataService, private serviceContractPriceService: ServiceContractPriceDataService, private userService: DataService) {}
 
   ngOnInit(): void {
+    this.userService.getUser().subscribe({
+      next: (receivedUser) => this.user = receivedUser,
+    });
     this.serviceContractService.getServiceContracts().subscribe({
       next: (serviceContractsData) => this.serviceContracts = serviceContractsData,
+      complete: () => console.info(''),
+      error: (e) => console.error(e)
     });
     this.price = new Price();
     this.serviceContractPriceInput = new ServiceContractPrice();
+    this.serviceContractPriceInput.confirmed = false;
+  }
+
+  onSelect(selectedValue: string) {
+    this.selectedServiceContract = this.serviceContracts.find(serviceContract => serviceContract.serviceContractName === selectedValue);
+
+    if(this.selectedServiceContract !== undefined) {
+      console.info('Selected ServiceContract is now Id = ' + this.selectedServiceContract.serviceContractNo);
+    }
+    
+  }
+
+  checkIfPriceIsValid() {
+    this.priceIsValid = !Number.isNaN(this.price.price) && this.price.price >= 13.00 && this.price.price.toString().length >= 4;
+  }
+
+  checkIfCurrencyIsValid() {
+    this.currencyIsValid = this.price.currency === 'EUR' || this.price.currency === 'USD';
+  }
+
+  checkIfServiceContractIsValid() {
+    this.serviceContractIsValid = this.selectedServiceContract !== undefined;
+  }
+
+  checkIfServiceContractPriceIsValid() {
+    this.serviceContractPriceIsValid = this.serviceContractPriceInput.userId > 0;
   }
 
   onSubmit() {
