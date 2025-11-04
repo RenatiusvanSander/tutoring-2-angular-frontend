@@ -34,6 +34,7 @@ export class AddServiceContractPriceComponent implements OnInit {
   currencyIsValid: boolean = false;
   serviceContractIsValid: boolean = false;
   serviceContractPriceIsValid: boolean = false;
+  serviceContractPriceIsSuccessfulSaved: boolean = false;
 
   constructor(private serviceContractService: ServiceContractDataService, private priceService: PriceDataService, private serviceContractPriceService: ServiceContractPriceDataService, private userService: DataService) {}
 
@@ -77,6 +78,36 @@ export class AddServiceContractPriceComponent implements OnInit {
   }
 
   onSubmit() {
+    var persistedPrice: Price = new Price();
 
+    this.priceService.persistPrice(this.price).subscribe({
+      next:  (savedPriced) => persistedPrice = savedPriced,
+      complete: () => console.info('Price is persisted'),
+      error: (e) => console.error(e)
+    });
+
+    if(persistedPrice === undefined || persistedPrice.id == 0) {
+      console.error('ServiceContractPrice was not persisted - Please try later or contact us.');
+      return;
+    }
+
+    let newServiceContractPrice : ServiceContractPrice = ServiceContractPrice.fromHttp(this.serviceContractPriceInput);
+    newServiceContractPrice.priceId = persistedPrice.id;
+    newServiceContractPrice.serviceContractId = this.selectedServiceContract.id;
+    newServiceContractPrice.userId = this.user.userId;
+
+    this.serviceContractPriceService.persistServiceContractPrice(newServiceContractPrice).subscribe({
+      next: (savedSCP) => this.serviceContractPriceInput = savedSCP,
+      complete: () => {
+        this.serviceContractPriceIsSuccessfulSaved = true;
+        this.serviceContractPriceInput = new ServiceContractPrice();
+        this.price = new Price();
+        this.selectedServiceContract = undefined;
+        this.priceIsValid = false;
+        this.serviceContractIsValid = false;
+        this.serviceContractPriceIsValid = false;
+        this.
+      }
+    })
   }
 }
