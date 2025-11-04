@@ -28,7 +28,7 @@ export class AddServiceContractPriceComponent implements OnInit {
   @Input()
   serviceContractPriceInput!: ServiceContractPrice;
 
-  selectedServiceContract!: ServiceContract | undefined;
+  selectedServiceContract!: ServiceContract;
 
   priceIsValid: boolean = false;
   currencyIsValid: boolean = false;
@@ -47,18 +47,18 @@ export class AddServiceContractPriceComponent implements OnInit {
       complete: () => console.info(''),
       error: (e) => console.error(e)
     });
+    this.selectedServiceContract = new ServiceContract();
     this.price = new Price();
     this.serviceContractPriceInput = new ServiceContractPrice();
     this.serviceContractPriceInput.confirmed = false;
   }
 
   onSelect(selectedValue: string) {
-    this.selectedServiceContract = this.serviceContracts.find(serviceContract => serviceContract.serviceContractName === selectedValue);
+    this.selectedServiceContract = this.serviceContracts.find(serviceContract => serviceContract.serviceContractName === selectedValue) ?? new ServiceContract();
 
     if(this.selectedServiceContract !== undefined) {
       console.info('Selected ServiceContract is now Id = ' + this.selectedServiceContract.serviceContractNo);
     }
-    
   }
 
   checkIfPriceIsValid() {
@@ -86,14 +86,14 @@ export class AddServiceContractPriceComponent implements OnInit {
       error: (e) => console.error(e)
     });
 
-    if(persistedPrice === undefined || persistedPrice.id == 0) {
+    if(persistedPrice === undefined || persistedPrice.id == 0 || this.selectedServiceContract !== undefined) {
       console.error('ServiceContractPrice was not persisted - Please try later or contact us.');
       return;
     }
 
     let newServiceContractPrice : ServiceContractPrice = ServiceContractPrice.fromHttp(this.serviceContractPriceInput);
     newServiceContractPrice.priceId = persistedPrice.id;
-    newServiceContractPrice.serviceContractId = this.selectedServiceContract.id;
+    newServiceContractPrice.serviceContractId = this.selectedServiceContract.serviceContractNo;
     newServiceContractPrice.userId = this.user.userId;
 
     this.serviceContractPriceService.persistServiceContractPrice(newServiceContractPrice).subscribe({
@@ -102,7 +102,7 @@ export class AddServiceContractPriceComponent implements OnInit {
         this.serviceContractPriceIsSuccessfulSaved = true;
         this.serviceContractPriceInput = new ServiceContractPrice();
         this.price = new Price();
-        this.selectedServiceContract = undefined;
+        this.selectedServiceContract = new ServiceContract();
         this.priceIsValid = false;
         this.serviceContractIsValid = false;
         this.serviceContractPriceIsValid = false;
