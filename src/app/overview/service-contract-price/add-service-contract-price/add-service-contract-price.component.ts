@@ -106,7 +106,6 @@ export class AddServiceContractPriceComponent implements OnInit {
         this.priceIsValid = false;
         this.serviceContractIsValid = false;
         this.serviceContractPriceIsValid = false;
-        this.
       }
     })
   }
