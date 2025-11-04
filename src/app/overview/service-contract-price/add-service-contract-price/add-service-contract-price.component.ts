@@ -28,12 +28,11 @@ export class AddServiceContractPriceComponent implements OnInit {
   @Input()
   serviceContractPriceInput!: ServiceContractPrice;
 
-  selectedServiceContract!: ServiceContract;
+  selectedServiceContractId: number | undefined = 0;
 
   priceIsValid: boolean = false;
   currencyIsValid: boolean = false;
   serviceContractIsValid: boolean = false;
-  serviceContractPriceIsValid: boolean = false;
   serviceContractPriceIsSuccessfulSaved: boolean = false;
 
   constructor(private serviceContractService: ServiceContractDataService, private priceService: PriceDataService, private serviceContractPriceService: ServiceContractPriceDataService, private userService: DataService) {}
@@ -44,56 +43,57 @@ export class AddServiceContractPriceComponent implements OnInit {
     });
     this.serviceContractService.getServiceContracts().subscribe({
       next: (serviceContractsData) => this.serviceContracts = serviceContractsData,
-      complete: () => console.info(''),
+      complete: () => console.info('All ServiceContracts loaded.'),
       error: (e) => console.error(e)
     });
-    this.selectedServiceContract = new ServiceContract();
     this.price = new Price();
+    this.price.id = 0;
     this.serviceContractPriceInput = new ServiceContractPrice();
     this.serviceContractPriceInput.confirmed = false;
   }
 
   onSelect(selectedValue: string) {
-    this.selectedServiceContract = this.serviceContracts.find(serviceContract => serviceContract.serviceContractName === selectedValue) ?? new ServiceContract();
+    var serviceContract = this.serviceContracts.find(serviceContract => serviceContract.serviceContractName === selectedValue);
+    this.selectedServiceContractId = serviceContract?.serviceContractNo;
 
-    if(this.selectedServiceContract !== undefined) {
-      console.info('Selected ServiceContract is now Id = ' + this.selectedServiceContract.serviceContractNo);
-    }
+    console.info('Selected ServiceContract is now Id = ' + this.selectedServiceContractId);
   }
 
   checkIfPriceIsValid() {
     this.priceIsValid = !Number.isNaN(this.price.price) && this.price.price >= 13.00 && this.price.price.toString().length >= 4;
+    console.log('price is valid: ' + this.priceIsValid);
   }
 
   checkIfCurrencyIsValid() {
-    this.currencyIsValid = this.price.currency === 'EUR' || this.price.currency === 'USD';
+    this.currencyIsValid = this.price.currency.toLowerCase() === 'eur' || this.price.currency.toLowerCase() === 'usd';
+    console.log('currency is valid: ' + this.currencyIsValid);
   }
 
   checkIfServiceContractIsValid() {
-    this.serviceContractIsValid = this.selectedServiceContract !== undefined;
-  }
-
-  checkIfServiceContractPriceIsValid() {
-    this.serviceContractPriceIsValid = this.serviceContractPriceInput.userId > 0;
+    this.serviceContractIsValid = this.selectedServiceContractId !== undefined && this.selectedServiceContractId > 0;
+    console.log('service contract is valid: ' + this.serviceContractIsValid);
   }
 
   onSubmit() {
-    var persistedPrice: Price = new Price();
+    var persistedPrice: Price = Price.fromHttp(this.price);
 
     this.priceService.persistPrice(this.price).subscribe({
-      next:  (savedPriced) => persistedPrice = savedPriced,
-      complete: () => console.info('Price is persisted'),
+      next:  (savedPriced: Price) => {
+        persistedPrice = savedPriced;
+        this.saveServiceContractPrice(persistedPrice);
+      },
+      complete: () => {
+        console.info('Price is persisted');
+      },
       error: (e) => console.error(e)
     });
+  }
 
-    if(persistedPrice === undefined || persistedPrice.id == 0 || this.selectedServiceContract !== undefined) {
-      console.error('ServiceContractPrice was not persisted - Please try later or contact us.');
-      return;
-    }
-
+  saveServiceContractPrice(persistedPrice: Price) {
     let newServiceContractPrice : ServiceContractPrice = ServiceContractPrice.fromHttp(this.serviceContractPriceInput);
+    newServiceContractPrice.id = 0;
     newServiceContractPrice.priceId = persistedPrice.id;
-    newServiceContractPrice.serviceContractId = this.selectedServiceContract.serviceContractNo;
+    newServiceContractPrice.serviceContractId = this.selectedServiceContractId !== undefined? this.selectedServiceContractId : 0;
     newServiceContractPrice.userId = this.user.userId;
 
     this.serviceContractPriceService.persistServiceContractPrice(newServiceContractPrice).subscribe({
@@ -102,11 +102,12 @@ export class AddServiceContractPriceComponent implements OnInit {
         this.serviceContractPriceIsSuccessfulSaved = true;
         this.serviceContractPriceInput = new ServiceContractPrice();
         this.price = new Price();
-        this.selectedServiceContract = new ServiceContract();
+        this.selectedServiceContractId = 0;
         this.priceIsValid = false;
         this.serviceContractIsValid = false;
-        this.serviceContractPriceIsValid = false;
-      }
+        this.currencyIsValid = false;
+      },
+      error: (e) => console.error(e)
     })
   }
 }

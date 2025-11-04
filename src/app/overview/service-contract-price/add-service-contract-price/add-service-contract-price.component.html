@@ -24,11 +24,11 @@
         </div>
         <div class="form-group">
             <label for="serviceContracts">Select a service contract:</label>
-            <select #serviceContractSelect name="serviceContracts" id="serviceContracts" (change)="onSelect(serviceContractSelect.value)">
+            <select #serviceContractSelect name="serviceContracts" id="serviceContracts" (change)="onSelect(serviceContractSelect.value)" (mouseup)="checkIfServiceContractIsValid()">
                 <option value="{{serviceContract.serviceContractName}}" *ngFor="let serviceContract of serviceContracts; let serviceContractsPosition = index">{{serviceContract.serviceContractName}}</option>
             </select>
         </div>
         <br/>
-        <button type="button" class="tutoring3-button tutoring3-button--user-select-none tutoring3-button--border-radius-25 tutoring3-button--button" (click)="onSubmit()" [disabled]="!priceIsValid || !currencyIsValid || !serviceContractIsValid || !serviceContractPriceIsValid">Save</button>
+        <button type="button" class="tutoring3-button tutoring3-button--user-select-none tutoring3-button--border-radius-25 tutoring3-button--button" (click)="onSubmit()" [disabled]="!priceIsValid || !currencyIsValid || !serviceContractIsValid">Save</button>
     </form>
 </div>
