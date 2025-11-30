@@ -1,0 +1,29 @@
+<div class="margin--left-8rem main-content">
+    <h1 class="heading1">Add Service Contract</h1>
+    <br />
+    <br />
+
+    <form class="form" #userForm="ngForm">
+        <div class="form-group">
+            <label for="name">Name: </label>
+            <label class="custom-field one">
+                <input type="text" placeholder=" " #nameField="ngModel" type="text" id="name" [(ngModel)]="serviceContractInput.serviceContractName" name="name" required (change)="checkIfNameIsValid()">
+                <span class="placeholder">Name eingeben</span>
+            </label>
+            <div class="alert alert-danger" *ngIf="nameField.invalid && nameField.touched">Name is required.</div>
+            <div class="alert alert-danger" *ngIf="!nameIsValid && nameField.touched">Name cannot be blank.</div>            
+        </div>
+        <div class="form-group">
+            <label for="description">Description: </label>
+            <label class="custom-field one">
+                <input type="text" placeholder=" " #descriptionField="ngModel" type="text" id="description" [(ngModel)]="serviceContractInput.serviceContractDescription" name="description" required (change)="checkIfDescriptionIsValid()">
+                <span class="placeholder">Beschreibung eingeben</span>
+            </label>
+            <div class="alert alert-danger" *ngIf="descriptionField.invalid && descriptionField.touched">Description is required.</div>
+            <div class="alert alert-danger" *ngIf="!descriptionIsValid && descriptionField.touched">Description cannot be blank.</div>            
+        </div>
+        <br/>
+        <button type="button" class="tutoring3-button tutoring3-button--user-select-none tutoring3-button--border-radius-25 tutoring3-button--button" (click)="onSubmit()" [disabled]="!nameIsValid || !descriptionIsValid">Save</button>
+    </form>
+</div>
+

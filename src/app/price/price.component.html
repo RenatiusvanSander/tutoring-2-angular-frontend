@@ -1,0 +1,13 @@
+<div class="margin--left-8rem main-content">
+    <h1 class="heading1">Preis-&Uuml;bersicht</h1>
+    <br />
+    <br />
+
+    <div *ngIf="message"></div>
+    <div *ngIf="dataLoaded">
+        <div class="toc-line-start">
+            <a [routerLink]="['/update-price', prices[0].id]">Update a Price</a>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,34 @@
+<div class="margin--left-8rem main-content">
+    <h1 class="heading1">Add Service Contract Price</h1>
+    <br />
+    <br />
+
+    <form class="form" #serviceContractPriceForm="ngForm">
+        <div class="form-group">
+            <label for="price">Preis / Price: </label>
+            <label class="custom-field one">
+                <input type="text" placeholder=" " #priceField="ngModel" type="text" id="price" [(ngModel)]="price.price" name="street" required (change)="checkIfPriceIsValid()">
+                <span class="placeholder">Preis eingeben</span>
+            </label>
+            <div class="alert alert-danger" *ngIf="priceField.invalid && priceField.touched">Price is required.</div>
+            <div class="alert alert-danger" *ngIf="!priceIsValid && priceField.touched">Price cannot be blank.</div>            
+        </div>
+        <div class="form-group">
+            <label for="currency">W&auml;hrung / Currency: </label>
+            <label class="custom-field one">
+                <input type="text" placeholder=" " #currencyField="ngModel" type="text" id="price" [(ngModel)]="price.currency" name="currency" required (change)="checkIfCurrencyIsValid()">
+                <span class="placeholder">W&auml;hrung eingeben</span>
+            </label>
+            <div class="alert alert-danger" *ngIf="currencyField.invalid && currencyField.touched">Currency is required.</div>
+            <div class="alert alert-danger" *ngIf="!currencyIsValid && priceField.touched">Currency cannot be blank.</div>            
+        </div>
+        <div class="form-group">
+            <label for="serviceContracts">Select a service contract:</label>
+            <select #serviceContractSelect name="serviceContracts" id="serviceContracts" (change)="onSelect(serviceContractSelect.value)" (mouseup)="checkIfServiceContractIsValid()">
+                <option value="{{serviceContract.serviceContractName}}" *ngFor="let serviceContract of serviceContracts; let serviceContractsPosition = index">{{serviceContract.serviceContractName}}</option>
+            </select>
+        </div>
+        <br/>
+        <button type="button" class="tutoring3-button tutoring3-button--user-select-none tutoring3-button--border-radius-25 tutoring3-button--button" (click)="onSubmit()" [disabled]="!priceIsValid || !currencyIsValid || !serviceContractIsValid">Save</button>
+    </form>
+</div>

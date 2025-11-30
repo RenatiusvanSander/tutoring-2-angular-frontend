@@ -21,6 +21,13 @@ import { DeleteAddressComponent } from "./settings/Address/delete-address/delete
 import { AdminComponent } from "./admin/admin.component";
 import { adminGuard } from "./authguards/admin.guard";
 import { ForbiddenComponent } from "./forbidden/forbidden.component";
+import { ServiceContractPriceComponent } from "./overview/service-contract-price/service-contract-price.component";
+import { AddServiceContractComponent } from "./service-contract/add-service-contract/add-service-contract.component";
+import { ServiceContractComponent } from "./service-contract/service-contract.component";
+import { AddPriceComponent } from "./price/add-price/add-price.component";
+import { PriceComponent } from "./price/price.component";
+import { PriceUpdateComponent } from "./price/price-update/price-update.component";
+import { AddServiceContractPriceComponent } from "./overview/service-contract-price/add-service-contract-price/add-service-contract-price.component";
 
 export const app_routes: Routes = [
     {
@@ -80,5 +87,26 @@ export const app_routes: Routes = [
     },
     {
         path: 'forbidden', component: ForbiddenComponent
+    },
+    {
+        path: 'overview/service-contract-price', component: ServiceContractPriceComponent, canActivate: [canActivateByAuthenticated]
+    },
+    {
+        path: 'overview/service-contract-price/add-service-contract-price', component: AddServiceContractPriceComponent, canActivate: [canActivateByAuthenticated]
+    },
+    {
+        path: 'add-service-contract', component: AddServiceContractComponent
+    },
+    {
+        path: 'service-contract', component: ServiceContractComponent
+    },
+    {
+        path: 'add-price', component: AddPriceComponent
+    },
+    {
+        path: 'price', component: PriceComponent
+    },
+    {
+        path: 'update-price/:id', component: PriceUpdateComponent
     }
 ];

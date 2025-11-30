@@ -34,6 +34,13 @@ import { DeleteAddressComponent } from './settings/Address/delete-address/delete
 import { CachingInterceptor } from './interceptors/caching.interceptor';
 import { AdminComponent } from './admin/admin.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { ServiceContractPriceComponent } from './overview/service-contract-price/service-contract-price.component';
+import { ServiceContractComponent } from './service-contract/service-contract.component';
+import { PriceComponent } from './price/price.component';
+import { AddServiceContractComponent } from './service-contract/add-service-contract/add-service-contract.component';
+import { AddPriceComponent } from './price/add-price/add-price.component';
+import { PriceUpdateComponent } from './price/price-update/price-update.component';
+import { AddServiceContractPriceComponent } from './overview/service-contract-price/add-service-contract-price/add-service-contract-price.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +68,14 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     EditAddressComponent,
     DeleteAddressComponent,
     AdminComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    ServiceContractPriceComponent,
+    ServiceContractComponent,
+    PriceComponent,
+    AddServiceContractComponent,
+    AddPriceComponent,
+    PriceUpdateComponent,
+    AddServiceContractPriceComponent
   ],
   imports: [
     BrowserModule,
