@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { TutoringAppointment } from '../../models/tutoring-appointment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class TutoringAppointmentDataService {
 
   constructor(private http: HttpClient) { }
 
-  persistTutoringAppointment(): Observable<any> {
-    return this.http.post<any>(TutoringAppointmentDataService.apiUrl + '/save', "");
+  persistTutoringAppointment(appointment: TutoringAppointment): Observable<TutoringAppointment> {
+    return this.http.post<TutoringAppointment>(TutoringAppointmentDataService.apiUrl + '/save', appointment);
   }
 }

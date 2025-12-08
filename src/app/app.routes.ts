@@ -28,6 +28,8 @@ import { AddPriceComponent } from "./price/add-price/add-price.component";
 import { PriceComponent } from "./price/price.component";
 import { PriceUpdateComponent } from "./price/price-update/price-update.component";
 import { AddServiceContractPriceComponent } from "./overview/service-contract-price/add-service-contract-price/add-service-contract-price.component";
+import { TutoringAppointmentsComponent } from "./overview/tutoring-appointments/tutoring-appointments.component";
+import { AddTutoringAppointmentComponent } from "./overview/tutoring-appointments/add-tutoring-appointment/add-tutoring-appointment.component";
 
 export const app_routes: Routes = [
     {
@@ -108,5 +110,11 @@ export const app_routes: Routes = [
     },
     {
         path: 'update-price/:id', component: PriceUpdateComponent
+    },
+    {
+        path: 'overview/tutoring-appointments', component: TutoringAppointmentsComponent, canActivate: [canActivateByAuthenticated]
+    },
+    {
+        path: 'overview/tutoring-appointments/add-tutoring-appointment', component: AddTutoringAppointmentComponent, canActivate: [canActivateByAuthenticated]
     }
 ];
