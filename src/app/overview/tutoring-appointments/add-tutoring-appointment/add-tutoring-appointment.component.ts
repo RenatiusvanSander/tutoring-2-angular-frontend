@@ -10,6 +10,7 @@ import { TutoringAppointment } from '../../../models/tutoring-appointment';
   styleUrl: './add-tutoring-appointment.component.css'
 })
 export class AddTutoringAppointmentComponent implements OnInit{
+  persistedApppointment?: TutoringAppointment
 
   constructor(private appointmentService: TutoringAppointmentDataService) {}
 
@@ -22,8 +23,8 @@ export class AddTutoringAppointmentComponent implements OnInit{
     appointment.tutoringAppointmentEndDateTime = new Date(2024, 12, 6, 14, 0, 0).toISOString();
 
     this.appointmentService.persistTutoringAppointment(appointment).subscribe({
-          next:  () => {
-            console.info('Tutoring Appointment is persisted');
+          next:  (savedTutoringAppointment: TutoringAppointment) => {
+            this.persistedApppointment = savedTutoringAppointment;
           },
           complete: () => {
             console.info('Tutoring Appointment is persisted');
