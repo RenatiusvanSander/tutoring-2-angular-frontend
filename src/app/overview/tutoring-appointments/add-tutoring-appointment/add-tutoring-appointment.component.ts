@@ -25,17 +25,17 @@ export class AddTutoringAppointmentComponent implements OnInit{
     this.user = new User();
   }
 
-  ngOnInit(): void {
-    this.dataService.getUser()
-      .subscribe(
-        (next: User) => {
-          this.user = next;
-          this.loadServiceContracts();
-          if(this.serviceContracts.length > 0) {
-            this.createAndSaveTutoringAppointment();
-          }
-        }
-      );
+  async ngOnInit() {
+    try {
+      this.user = await this.dataService.getUser();
+    } catch(error) {
+      console.error('Failed to load user for add-tutoring-appointment: ', error);
+    } 
+
+    this.loadServiceContracts();
+    if(this.serviceContracts.length > 0) {
+      this.createAndSaveTutoringAppointment();
+    }
   }
 
   loadServiceContracts() {

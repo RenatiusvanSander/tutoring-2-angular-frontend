@@ -37,10 +37,14 @@ export class AddServiceContractPriceComponent implements OnInit {
 
   constructor(private serviceContractService: ServiceContractDataService, private priceService: PriceDataService, private serviceContractPriceService: ServiceContractPriceDataService, private userService: DataService) {}
 
-  ngOnInit(): void {
-    this.userService.getUser().subscribe({
-      next: (receivedUser) => this.user = receivedUser,
-    });
+  async ngOnInit(): Promise<void> {
+    try {
+      const loadedUser = await this.userService.getUser();
+      this.user = loadedUser
+    } catch(error) {
+      console.error('Failed to load user for add-service-contract-price: ', error);
+    }
+    
     this.serviceContractService.getServiceContracts().subscribe({
       next: (serviceContractsData) => this.serviceContracts = serviceContractsData,
       complete: () => console.info('All ServiceContracts loaded.'),

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
-import { map, Observable } from 'rxjs';
+import { firstValueFrom, map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -19,10 +19,7 @@ export class DataService {
     );
   }
 
-  getUser() : Observable<User> {
-    return this.http.get<User>(DataService.apiUrl + '/users/get-users/get-user')
-    .pipe(
-      map( (data: User) => User.fromHttp(data))
-    );
+  async getUser() : Promise<User> {
+    return await firstValueFrom(this.http.get<User>(DataService.apiUrl + '/users/get-users/get-user'));
   }
 }
