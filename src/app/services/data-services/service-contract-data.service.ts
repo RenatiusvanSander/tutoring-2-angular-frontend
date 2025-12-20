@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ServiceContract } from '../../models/service-contract';
-import { map, Observable, of } from 'rxjs';
+import { lastValueFrom, map, Observable, of } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
@@ -34,22 +34,13 @@ export class ServiceContractDataService {
         );
   }
 
-  getServiceContractsByIds(ids: number[]): Observable<Array<ServiceContract>> {
+  async getServiceContractsByIds(ids: number[]): Promise<Array<ServiceContract>> {
     let params: HttpParams = new HttpParams();
     for(let id of ids) {
       params = params.append('id', id);
     }
-    return this.http.get<Array<ServiceContract>>(ServiceContractDataService.apiUrl + '/get-service-contracts-by-ids', { params })
-      .pipe(
-        map( data => {
-          const serviceContracts = new Array<ServiceContract>();
-          for(const serviceContract of data) {
-            serviceContracts.push(ServiceContract.fromHttp(serviceContract));
-          }
     
-          return serviceContracts;
-        })
-      );
+    return await lastValueFrom(this.http.get<Array<ServiceContract>>(ServiceContractDataService.apiUrl + '/get-service-contracts-by-ids', { params }));
   }
 
 }

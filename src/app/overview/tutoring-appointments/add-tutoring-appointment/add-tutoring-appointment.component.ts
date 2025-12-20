@@ -6,7 +6,7 @@ import { User } from '../../../models/user';
 import { ServiceContractPriceDataService } from '../../../services/data-services/service-contract-price-data.service';
 import { ServiceContractDataService } from '../../../services/data-services/service-contract-data.service';
 import { ServiceContract } from '../../../models/service-contract';
-import { map } from 'rxjs';
+import { ServiceContractPrice } from '../../../models/service-contract-price';
 
 @Component({
   selector: 'app-add-tutoring-appointment',
@@ -28,51 +28,43 @@ export class AddTutoringAppointmentComponent implements OnInit{
   async ngOnInit() {
     try {
       this.user = await this.dataService.getUser();
+
     } catch(error) {
       console.error('Failed to load user for add-tutoring-appointment: ', error);
-    } 
+    }
+    
+    const serviceContractPrices = await this.loadSericeContractPrices();
+    if(serviceContractPrices.length > 0) {
+      const serviceContractIds: Array<number> = serviceContractPrices.map(scp => scp.serviceContractId);
+      this.serviceContracts = await this.serviceContractService.getServiceContractsByIds(serviceContractIds);
+    }
 
-    this.loadServiceContracts();
     if(this.serviceContracts.length > 0) {
       this.createAndSaveTutoringAppointment();
     }
   }
 
-  loadServiceContracts() {
-    this.serviceContractPriceService.getServiceContractPricesByUserId(this.user.userId).subscribe({
-      next: (receivedServiceContractPrices) => {
-        let serviceContractIds: Array<number> = new Array<number>();
-        receivedServiceContractPrices.map(scp => serviceContractIds.push(scp.serviceContractId));
-        this.serviceContractService.getServiceContractsByIds(serviceContractIds).subscribe({
-          next: (loadedServiceContracts) => {
-            this.serviceContracts = loadedServiceContracts;
-          }
-        })
-      },
-      complete: () => {
-            console.info('Loaded users service price contracts');
-      },
-      error: (e) => console.error(e)
-    })
+  async loadSericeContractPrices(): Promise<ServiceContractPrice[]> {
+    try {
+      return await this.serviceContractPriceService.getServiceContractPricesByUserId(this.user.userId);
+    } catch(error) {
+      console.error('Failed to load ServiceContractPrices: ', error);
+    }
+
+    return new Array<ServiceContractPrice>();
   }
 
-  createAndSaveTutoringAppointment() {
-    const appointment = new TutoringAppointment();
-    appointment.id = 0
-    appointment.isAccomplished = false
-    appointment.tutoringAppointmentDate = new Date(2024, 12, 6).toISOString();
-    appointment.tutoringAppointmentStartDateTime = new Date(2024, 12, 6, 13, 0, 0).toISOString();
-    appointment.tutoringAppointmentEndDateTime = new Date(2024, 12, 6, 14, 0, 0).toISOString();
-
-    this.appointmentService.persistTutoringAppointment(appointment).subscribe({
-      next:  (savedTutoringAppointment: TutoringAppointment) => {
-        this.persistedApppointment = savedTutoringAppointment;
-      },
-      complete: () => {
-        console.info('Tutoring Appointment is persisted');
-      },
-      error: (e) => console.error(e)
-    });
+  async createAndSaveTutoringAppointment() {
+    if(this.serviceContracts.length > 0) {
+      const appointment = new TutoringAppointment();
+      appointment.id = 0
+      appointment.isAccomplished = false
+      appointment.tutoringAppointmentDate = new Date(2024, 12, 6).toISOString();
+      appointment.tutoringAppointmentStartDateTime = new Date(2024, 12, 6, 13, 0, 0).toISOString();
+      appointment.tutoringAppointmentEndDateTime = new Date(2024, 12, 6, 14, 0, 0).toISOString();
+      this.persistedApppointment = await this.appointmentService.persistTutoringAppointment(appointment);
+      console.log('Persisted appointment: ', this.persistedApppointment);
+    }
   }
  
 }

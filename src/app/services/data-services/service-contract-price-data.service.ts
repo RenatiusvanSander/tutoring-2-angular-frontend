@@ -16,11 +16,10 @@ export class ServiceContractPriceDataService {
     return this.http.post<ServiceContractPrice>(ServiceContractPriceDataService.apiUrl + '/save-service-contract-price', scp);
   }
 
-  getServiceContractPricesByUserId(userId: number): Observable<Array<ServiceContractPrice>> {
-    return this.http.get<Array<ServiceContractPrice>>(ServiceContractPriceDataService.apiUrl + '/get-service-contract-by-user-id/' + userId)
-      .pipe(
-        map( data => this.mappingArray(data))
-    );
+  async getServiceContractPricesByUserId(userId: number): Promise<Array<ServiceContractPrice>> {
+    let serviceContractPrices = await this.http.get<Array<ServiceContractPrice>>(ServiceContractPriceDataService.apiUrl + '/get-service-contract-by-user-id/' + userId).toPromise();
+    
+    return this.mappingArray(serviceContractPrices || new Array<ServiceContractPrice>());
   }
 
   getServciceContractPricesToBeconfirmed(): Observable<Array<ServiceContractPrice>> {

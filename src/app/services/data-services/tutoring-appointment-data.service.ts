@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { TutoringAppointment } from '../../models/tutoring-appointment';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class TutoringAppointmentDataService {
 
   constructor(private http: HttpClient) { }
 
-  persistTutoringAppointment(appointment: TutoringAppointment): Observable<TutoringAppointment> {
-    return this.http.post<TutoringAppointment>(TutoringAppointmentDataService.apiUrl + '/save', appointment);
+  async persistTutoringAppointment(appointment: TutoringAppointment): Promise<TutoringAppointment> {
+    return firstValueFrom(this.http.post<TutoringAppointment>(TutoringAppointmentDataService.apiUrl + '/save', appointment));
   }
 }
