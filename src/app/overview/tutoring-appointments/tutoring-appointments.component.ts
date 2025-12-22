@@ -55,9 +55,9 @@ export class TutoringAppointmentsComponent implements OnInit{
 
     if(this.serviceContracts.length > 0) {
       try {
-        // empty for now
+        this.appointments = await this.appointmentService.getTutoringAppointmentsByUserId(this.user.userId);
       } catch(error) {
-        // empty for now
+        console.error('Failed to load TutoringAppointments: ', error);
       }
     }
   }

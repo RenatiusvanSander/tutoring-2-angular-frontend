@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { firstValueFrom, Observable } from 'rxjs';
+import { firstValueFrom, lastValueFrom, Observable } from 'rxjs';
 import { TutoringAppointment } from '../../models/tutoring-appointment';
 
 @Injectable({
@@ -14,5 +14,9 @@ export class TutoringAppointmentDataService {
 
   async persistTutoringAppointment(appointment: TutoringAppointment): Promise<TutoringAppointment> {
     return firstValueFrom(this.http.post<TutoringAppointment>(TutoringAppointmentDataService.apiUrl + '/save', appointment));
+  }
+
+  async getTutoringAppointmentsByUserId(userId: number): Promise<Array<TutoringAppointment>> {
+    return lastValueFrom(this.http.get<Array<TutoringAppointment>>(TutoringAppointmentDataService.apiUrl + '/get/by-user-id/' + userId ));
   }
 }
