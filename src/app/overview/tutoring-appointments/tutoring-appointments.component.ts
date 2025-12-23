@@ -62,4 +62,10 @@ export class TutoringAppointmentsComponent implements OnInit{
     }
   }
 
+  getServieContractNameById(id: number): string {
+    const serviceContract: ServiceContract | undefined = this.serviceContracts.find(serviceContract => serviceContract.serviceContractNo === id);
+
+    return serviceContract === undefined ? '' : serviceContract.serviceContractName;
+  }
+
 }
