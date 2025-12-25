@@ -21,6 +21,7 @@ export class TutoringAppointmentsComponent implements OnInit{
   serviceContractPrices!: Array<ServiceContractPrice>;
   serviceContracts!: Array<ServiceContract>;
   appointments!: Array<TutoringAppointment>;
+  dataLoaded: boolean = false;
 
   constructor(private dataService: DataService, private serviceContractService: ServiceContractDataService, private serviceContractPriceService: ServiceContractPriceDataService, private appointmentService: TutoringAppointmentDataService) {
     this.user = new User();
@@ -32,7 +33,6 @@ export class TutoringAppointmentsComponent implements OnInit{
   async ngOnInit(): Promise<void> {
     try {
       this.user = await this.dataService.getUser();
-
     } catch(error) {
       console.error('Failed to load user for add-tutoring-appointment: ', error);
     }
@@ -44,9 +44,8 @@ export class TutoringAppointmentsComponent implements OnInit{
     }
 
     if(this.serviceContractPrices.length > 0) {
-      const serviceContractIds: Array<number> = this.serviceContractPrices.map(scp => scp.serviceContractId);
-
       try {
+        const serviceContractIds: Array<number> = this.serviceContractPrices.map(scp => scp.serviceContractId);
         this.serviceContracts = await this.serviceContractService.getServiceContractsByIds(serviceContractIds);
       } catch(error) {
         console.error('Failed to load ServiceContracts: ', error);
@@ -60,6 +59,8 @@ export class TutoringAppointmentsComponent implements OnInit{
         console.error('Failed to load TutoringAppointments: ', error);
       }
     }
+
+    this.dataLoaded = this.appointments.length > 0;
   }
 
   getServieContractNameById(id: number): string {
