@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { TutoringAppointmentDataService } from '../../../services/data-services/tutoring-appointment-data.service';
 import { DataService } from '../../../services/data.service';
 import { ServiceContractPriceDataService } from '../../../services/data-services/service-contract-price-data.service';
 import { User } from '../../../models/user';
 import { TutoringAppointment } from '../../../models/tutoring-appointment';
+import { ActivatedRoute, ActivatedRouteSnapshot, Navigation, Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-tutoring-appointments',
@@ -15,9 +16,12 @@ import { TutoringAppointment } from '../../../models/tutoring-appointment';
 export class UpdateTutoringAppointmentsComponent implements OnInit {
   user!: User;
   appointments!: Array<TutoringAppointment>;
+  appointment!: TutoringAppointment
 
-  constructor(private appointmentService: TutoringAppointmentDataService, private userService: DataService, private serviceContractPriceService: ServiceContractPriceDataService) {
+  constructor(private appointmentService: TutoringAppointmentDataService, private userService: DataService, private serviceContractPriceService: ServiceContractPriceDataService, private router: Router) {
     this.appointments = new Array<TutoringAppointment>();
+    let currentNavigation: Navigation | null = this.router.getCurrentNavigation();
+    this.appointment = currentNavigation?.extras.state ? currentNavigation.extras.state['updateAppointment'] : new TutoringAppointment();
   }
 
   async ngOnInit(): Promise<void> {
@@ -34,10 +38,10 @@ export class UpdateTutoringAppointmentsComponent implements OnInit {
     }
 
     if( this.appointments.length > 0) {
-      const appointment = this.appointments[0];
-
+      
+      
       try {
-        const updateAppointment = await this.appointmentService.updateSingleTutoringAppointment(appointment);
+        const updateAppointment = await this.appointmentService.updateSingleTutoringAppointment(this.appointment);
       } catch(error) {
         //
       }

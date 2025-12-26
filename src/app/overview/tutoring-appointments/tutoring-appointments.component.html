@@ -11,6 +11,7 @@
                 <p class="mb-0">Endzeit: {{appointment.tutoringAppointmentEndDateTime}}</p>
                 <p class="mb-0">Abgeschlossen: {{appointment.isAccomplished}}</p>
                 <p class="mb-0">Dienstleitung: {{getServieContractNameById(appointment.serviceContractId)}}</p>
+                <button class="tutoring3-button tutoring3-button--user-select-none tutoring3-button--border-radius-25 tutoring3-button--button margin--left-1rem" (click)="navigateToUpdateAppointment(appointment)" >Update Termin</button>
             </div>
         </div>
     </div>

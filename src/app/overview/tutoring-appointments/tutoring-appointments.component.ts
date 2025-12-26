@@ -7,6 +7,7 @@ import { ServiceContractDataService } from '../../services/data-services/service
 import { TutoringAppointmentDataService } from '../../services/data-services/tutoring-appointment-data.service';
 import { ServiceContractPriceDataService } from '../../services/data-services/service-contract-price-data.service';
 import { ServiceContractPrice } from '../../models/service-contract-price';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tutoring-appointments',
@@ -23,7 +24,7 @@ export class TutoringAppointmentsComponent implements OnInit{
   appointments!: Array<TutoringAppointment>;
   dataLoaded: boolean = false;
 
-  constructor(private dataService: DataService, private serviceContractService: ServiceContractDataService, private serviceContractPriceService: ServiceContractPriceDataService, private appointmentService: TutoringAppointmentDataService) {
+  constructor(private dataService: DataService, private serviceContractService: ServiceContractDataService, private serviceContractPriceService: ServiceContractPriceDataService, private appointmentService: TutoringAppointmentDataService, private router: Router) {
     this.user = new User();
     this.serviceContractPrices = new Array<ServiceContractPrice>();
     this.serviceContracts = new Array<ServiceContract>();
@@ -67,6 +68,10 @@ export class TutoringAppointmentsComponent implements OnInit{
     const serviceContract: ServiceContract | undefined = this.serviceContracts.find(serviceContract => serviceContract.serviceContractNo === id);
 
     return serviceContract === undefined ? '' : serviceContract.serviceContractName;
+  }
+
+  navigateToUpdateAppointment(appointment: TutoringAppointment): void {
+    this.router.navigate(['/overview/tutoring-appointments/update-tutoring-appointment'], {state: {updateAppointment: appointment}});
   }
 
 }
