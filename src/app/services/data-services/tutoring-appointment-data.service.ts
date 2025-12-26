@@ -19,4 +19,8 @@ export class TutoringAppointmentDataService {
   async getTutoringAppointmentsByUserId(userId: number): Promise<Array<TutoringAppointment>> {
     return lastValueFrom(this.http.get<Array<TutoringAppointment>>(TutoringAppointmentDataService.apiUrl + '/get/by-user-id/' + userId ));
   }
+
+  async updateSingleTutoringAppointment(appointment: TutoringAppointment): Promise<TutoringAppointment> {
+    return lastValueFrom(this.http.put<TutoringAppointment>(TutoringAppointmentDataService.apiUrl + '/update/single-tutoring-appointment', appointment));
+  }
 }
