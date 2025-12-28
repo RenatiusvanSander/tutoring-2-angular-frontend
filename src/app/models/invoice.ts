@@ -1,20 +1,20 @@
 export class Invoice {
-    invoiceNo!: number;
-    invoiceServiceContractId!: number;
-    invoiceTutoringHours!: number;
-    invoiceDate!: string
-    invoiceTutoringDate!: string
-    invoiceUserId!: number;
+    no!: number;
+    serviceContractId!: number;
+    tutoringHours!: number;
+    date!: string
+    tutoringDate!: string
+    userId!: number;
     priceId!: number;
 
     static fromHttp(invoice : Invoice) : Invoice {
         const newInvoice = new Invoice();
-        newInvoice.invoiceNo = invoice.invoiceNo;
-        newInvoice.invoiceServiceContractId = invoice.invoiceServiceContractId;
-        newInvoice.invoiceTutoringHours = invoice.invoiceTutoringHours;
-        newInvoice.invoiceDate = invoice.invoiceDate;
-        newInvoice.invoiceTutoringDate = invoice.invoiceTutoringDate;
-        newInvoice.invoiceUserId = invoice.invoiceUserId;
+        newInvoice.no = invoice.no;
+        newInvoice.serviceContractId = invoice.serviceContractId;
+        newInvoice.tutoringHours = invoice.tutoringHours;
+        newInvoice.date = invoice.date;
+        newInvoice.tutoringDate = invoice.tutoringDate;
+        newInvoice.userId = invoice.userId;
         newInvoice.priceId = invoice.priceId;
 
         return newInvoice;
