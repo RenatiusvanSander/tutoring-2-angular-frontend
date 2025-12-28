@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { User } from '../models/user';
 import { map } from 'rxjs';
+import { fromPromise } from 'rxjs/internal/observable/innerFrom';
 
 @Component({
   selector: 'app-overview',
@@ -23,19 +24,18 @@ export class OverviewComponent implements OnInit {
     this.loadData();
   }
 
-  loadData() {
-    this.message = 'Loading data...';
-    this.dataService.getUser()
-    .pipe(map (user => {
-      return user;
-    }))
-    .subscribe(
-      (next: User) => {
-        this.user = next;
-        this.dataLoaded = true;
+  async loadData() {
+    try {
+      this.message = 'Loading data...';
+      const loadedUser = await this.dataService.getUser();
+      this.user = loadedUser
+
+      this.dataLoaded = true;
         this.message = '';
-      }
-    );
+    }    
+    catch(error) {
+      console.error('Failed to load user for overview: ', error);
+    }
   }
 
 }

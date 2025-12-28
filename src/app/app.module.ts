@@ -41,6 +41,9 @@ import { AddServiceContractComponent } from './service-contract/add-service-cont
 import { AddPriceComponent } from './price/add-price/add-price.component';
 import { PriceUpdateComponent } from './price/price-update/price-update.component';
 import { AddServiceContractPriceComponent } from './overview/service-contract-price/add-service-contract-price/add-service-contract-price.component';
+import { TutoringAppointmentsComponent } from './overview/tutoring-appointments/tutoring-appointments.component';
+import { AddTutoringAppointmentComponent } from './overview/tutoring-appointments/add-tutoring-appointment/add-tutoring-appointment.component';
+import { UpdateTutoringAppointmentsComponent } from './overview/tutoring-appointments/update-tutoring-appointments/update-tutoring-appointments.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +78,10 @@ import { AddServiceContractPriceComponent } from './overview/service-contract-pr
     AddServiceContractComponent,
     AddPriceComponent,
     PriceUpdateComponent,
-    AddServiceContractPriceComponent
+    AddServiceContractPriceComponent,
+    TutoringAppointmentsComponent,
+    AddTutoringAppointmentComponent,
+    UpdateTutoringAppointmentsComponent
   ],
   imports: [
     BrowserModule,

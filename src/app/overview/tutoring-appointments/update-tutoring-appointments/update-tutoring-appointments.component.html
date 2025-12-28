@@ -1,0 +1,17 @@
+<div class="margin--left-8rem main-content">
+    <h1 class="heading1">Updated Termin</h1>
+    <br />
+
+    <div *ngIf="dataLoaded">
+        <div class="margin--left-1rem borders--border-bottom list--background margin-horizontal-1rem">
+            <div class="margin--left-1rem font-size--26">
+                <p class="mb-0">No: {{updateAppointment.tutoringAppointmentNo}}</p>
+                <p class="mb-0">Date: {{updateAppointment.tutoringAppointmentDate}}</p>
+                <p class="mb-0">Startzeit: {{updateAppointment.tutoringAppointmentStartDateTime}}</p>
+                <p class="mb-0">Endzeit: {{updateAppointment.tutoringAppointmentEndDateTime}}</p>
+                <p class="mb-0">Abgeschlossen: {{updateAppointment.isAccomplished}}</p>
+                <p class="mb-0">Dienstleitung: {{updateAppointment.serviceContractId}}</p>
+            </div>
+        </div>
+
+</div>
