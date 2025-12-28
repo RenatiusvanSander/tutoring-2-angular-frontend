@@ -14,14 +14,19 @@ import { ActivatedRoute, ActivatedRouteSnapshot, Navigation, Router } from '@ang
   styleUrl: './update-tutoring-appointments.component.css'
 })
 export class UpdateTutoringAppointmentsComponent implements OnInit {
+
   user!: User;
   appointments!: Array<TutoringAppointment>;
-  appointment!: TutoringAppointment
+  appointment!: TutoringAppointment;
+  updateAppointment!: TutoringAppointment;
+  updatedAppointments!: Array<TutoringAppointment>;
+  dataLoaded: boolean = false;
 
   constructor(private appointmentService: TutoringAppointmentDataService, private userService: DataService, private serviceContractPriceService: ServiceContractPriceDataService, private router: Router) {
     this.appointments = new Array<TutoringAppointment>();
     let currentNavigation: Navigation | null = this.router.getCurrentNavigation();
     this.appointment = currentNavigation?.extras.state ? currentNavigation.extras.state['updateAppointment'] : new TutoringAppointment();
+    this.updatedAppointments = new Array<TutoringAppointment>();
   }
 
   async ngOnInit(): Promise<void> {
@@ -38,10 +43,10 @@ export class UpdateTutoringAppointmentsComponent implements OnInit {
     }
 
     if( this.appointments.length > 0) {
-      
-      
       try {
-        const updateAppointment = await this.appointmentService.updateSingleTutoringAppointment(this.appointment);
+        this.updateAppointment = await this.appointmentService.updateSingleTutoringAppointment(this.appointment);
+        this.updatedAppointments = await this.appointmentService.updateMultipleTutoringAppointments(this.appointments);
+        this.dataLoaded = this.updateAppointment !== undefined && this.updateAppointment !== null;
       } catch(error) {
         //
       }

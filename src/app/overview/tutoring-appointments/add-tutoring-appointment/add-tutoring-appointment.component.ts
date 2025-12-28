@@ -60,9 +60,9 @@ export class AddTutoringAppointmentComponent implements OnInit{
       appointment.tutoringAppointmentNo = 0;
       appointment.tutoringAppointmentUser = this.user.userId;
       appointment.isAccomplished = false;
-      appointment.tutoringAppointmentDate = new Date(2024, 12, 6).toISOString();
-      appointment.tutoringAppointmentStartDateTime = new Date(2024, 12, 6, 13, 0, 0).toISOString();
-      appointment.tutoringAppointmentEndDateTime = new Date(2024, 12, 6, 14, 0, 0).toISOString();
+      appointment.tutoringAppointmentDate = new Date(2024, 11, 6).toISOString();
+      appointment.tutoringAppointmentStartDateTime = new Date(2024, 11, 6, 13, 0, 0).toISOString();
+      appointment.tutoringAppointmentEndDateTime = new Date(2024, 11, 6, 14, 0, 0).toISOString();
       appointment.serviceContractId = this.serviceContracts[0].serviceContractNo;
       this.persistedApppointment = await this.appointmentService.persistTutoringAppointment(appointment);
       console.log('Persisted appointment: ', this.persistedApppointment);
