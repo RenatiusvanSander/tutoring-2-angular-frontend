@@ -6,6 +6,7 @@ export class Invoice {
     tutoringDate!: string
     userId!: number;
     priceId!: number;
+    // ToDo store bytes of a file
 
     static fromHttp(invoice : Invoice) : Invoice {
         const newInvoice = new Invoice();
