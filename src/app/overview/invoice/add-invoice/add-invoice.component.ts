@@ -14,6 +14,7 @@ import { InvoiceDataService } from '../../../services/data-services/invoice-data
 export class AddInvoiceComponent implements OnInit {
 
   appointments!: Array<TutoringAppointment>;
+  dataLoaded: boolean = false;
 
   constructor(private appointmentService: TutoringAppointmentDataService, private invoiceService: InvoiceDataService) {
     this.appointments = new Array<TutoringAppointment>();
@@ -21,6 +22,7 @@ export class AddInvoiceComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.appointments = await this.appointmentService.loadNotAccomplishedAppointments();
+    this.dataLoaded = this.appointments.length > 0;
   }
 
   async submitInvoice(tutoringAppointmentNo: number): Promise<void> {

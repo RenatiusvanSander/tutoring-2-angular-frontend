@@ -3,4 +3,13 @@
     <div>
         <h1 class="heading1">Add invoice</h1>
     </div>
+    <div *ngIf="dataLoaded">
+        <div class="margin--left-1rem borders--border-bottom list--background margin-horizontal-1rem" *ngFor="let appointment of appointments;">
+            <div class="margin--left-1rem font-size--26">
+                <p class="mb-0">No: {{appointment.tutoringAppointmentNo}}</p>
+                <p class="mb-0">Date: {{appointment.tutoringAppointmentDate}}</p>
+                <button class="tutoring3-button tutoring3-button--user-select-none tutoring3-button--border-radius-25 tutoring3-button--button margin--left-1rem" (click)="submitInvoice(appointment.tutoringAppointmentNo)" >Create invoice and accomplish</button>
+            </div>
+        </div>
+    </div>
 </div>
