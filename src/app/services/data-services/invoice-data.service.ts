@@ -8,7 +8,7 @@ import { firstValueFrom, lastValueFrom } from 'rxjs';
 })
 export class InvoiceDataService {
 
-  private static apiUrl: String = 'http://localhost:8082/tutoring3/api/tutoring-appointments';
+  private static apiUrl: String = 'http://localhost:8082/tutoring3/api/invoices';
 
   constructor(private http: HttpClient) { }
 

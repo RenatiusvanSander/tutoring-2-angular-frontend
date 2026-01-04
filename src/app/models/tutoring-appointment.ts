@@ -5,7 +5,7 @@ export class TutoringAppointment {
     tutoringAppointmentStartDateTime!: string;
     tutoringAppointmentEndDateTime!: string;
     serviceContractId!: number;
-    isAccomplished!: boolean;
+    accomplished!: boolean;
 
     static fromHttp(tutoringAppointment : TutoringAppointment) : TutoringAppointment {
         const newTutoringAppointment = new TutoringAppointment();
@@ -15,7 +15,7 @@ export class TutoringAppointment {
         newTutoringAppointment.tutoringAppointmentStartDateTime = tutoringAppointment.tutoringAppointmentStartDateTime;
         newTutoringAppointment.tutoringAppointmentEndDateTime = tutoringAppointment.tutoringAppointmentEndDateTime;
         newTutoringAppointment.serviceContractId = tutoringAppointment.serviceContractId;
-        newTutoringAppointment.isAccomplished = tutoringAppointment.isAccomplished;
+        newTutoringAppointment.accomplished = tutoringAppointment.accomplished;
 
         return newTutoringAppointment;
     }

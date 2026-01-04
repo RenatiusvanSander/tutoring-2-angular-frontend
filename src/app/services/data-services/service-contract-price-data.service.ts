@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ServiceContractPrice } from '../../models/service-contract-price';
-import { map, Observable, of } from 'rxjs';
+import { firstValueFrom, map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +38,9 @@ export class ServiceContractPriceDataService {
 
   updateServiceContractPrice(scp: ServiceContractPrice): Observable<ServiceContractPrice> {
     return this.http.put<ServiceContractPrice>(ServiceContractPriceDataService.apiUrl + '/update-service-contract-price', scp);
+  }
+
+  async getServiceContractPriceByUserIdAndServiceContractId(userId: number | undefined, serviceContractId: number | undefined): Promise<ServiceContractPrice> {
+    return await firstValueFrom(this.http.get<ServiceContractPrice>(ServiceContractPriceDataService.apiUrl + '/get-service-contract-price-by-userid-and-service-contract-id' + '?&userId=' + userId + '&serviceContractId=' + serviceContractId));
   }
 }
