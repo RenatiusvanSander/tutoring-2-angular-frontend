@@ -1,1 +1,18 @@
-<p>invoice works!</p>
+<div class="margin--left-8rem main-content">
+    <h1 class="heading1">Rechnungen</h1>
+    <br />
+    <div *ngIf="dataLoaded">
+        <div class="margin--left-1rem borders--border-bottom list--background margin-horizontal-1rem" *ngFor="let invoice of invoices; let addressPosition = index">
+            <div class="margin--left-1rem font-size--26">
+                <p class="mb-0">No: {{invoice.no}}</p>
+                <p class="mb-0">Service Contract Id: {{invoice.serviceContractId}}</p>
+                <p class="mb-0">Tutorstunden: {{invoice.tutoringHours}}</p>
+                <p class="mb-0">Datum: {{invoice.date}}</p>
+                <p class="mb-0">Termin: {{invoice.tutoringDate}}</p>
+                <p class="mb-0">Benutzer-Id: {{invoice.userId}}</p>
+                <p class="mb-0">Preis-Id: {{invoice.priceId}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
