@@ -11,6 +11,7 @@
                 <p class="mb-0">Termin: {{invoice.tutoringDate}}</p>
                 <p class="mb-0">Benutzer-Id: {{invoice.userId}}</p>
                 <p class="mb-0">Preis-Id: {{invoice.priceId}}</p>
+                <p><button (click)="downloadInvoice(invoice.no)">Rechnung {{invoice.no}}</button></p>
             </div>
         </div>
     </div>
