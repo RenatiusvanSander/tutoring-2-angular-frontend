@@ -31,6 +31,10 @@ import { AddServiceContractPriceComponent } from "./overview/service-contract-pr
 import { TutoringAppointmentsComponent } from "./overview/tutoring-appointments/tutoring-appointments.component";
 import { AddTutoringAppointmentComponent } from "./overview/tutoring-appointments/add-tutoring-appointment/add-tutoring-appointment.component";
 import { UpdateTutoringAppointmentsComponent } from "./overview/tutoring-appointments/update-tutoring-appointments/update-tutoring-appointments.component";
+import { InvoiceComponent } from "./overview/invoice/invoice.component";
+import { AddInvoiceComponent } from "./overview/invoice/add-invoice/add-invoice.component";
+import { UpdateInvoiceComponent } from "./overview/invoice/update-invoice/update-invoice.component";
+import { UpdateInvoicesComponent } from "./overview/invoice/update-invoices/update-invoices.component";
 
 export const app_routes: Routes = [
     {
@@ -120,5 +124,17 @@ export const app_routes: Routes = [
     },
     {
         path: 'overview/tutoring-appointments/update-tutoring-appointment', component: UpdateTutoringAppointmentsComponent, canActivate: [canActivateByAuthenticated]
+    },
+    {
+        path: 'overview/invoice', component: InvoiceComponent, canActivate: [canActivateByAuthenticated]
+    },
+    {
+        path: 'overview/invoice/add-invoice', component: AddInvoiceComponent, canActivate: [canActivateByAuthenticated]
+    },
+    {
+        path: 'overview/invoice/update-invoice', component: UpdateInvoiceComponent, canActivate: [canActivateByAuthenticated]
+    },
+    {
+        path: 'overview/invoice/update-invoices', component: UpdateInvoicesComponent, canActivate: [canActivateByAuthenticated]
     }
 ];

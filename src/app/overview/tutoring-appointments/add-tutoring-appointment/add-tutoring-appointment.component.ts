@@ -28,7 +28,6 @@ export class AddTutoringAppointmentComponent implements OnInit{
   async ngOnInit() {
     try {
       this.user = await this.dataService.getUser();
-
     } catch(error) {
       console.error('Failed to load user for add-tutoring-appointment: ', error);
     }
@@ -59,7 +58,7 @@ export class AddTutoringAppointmentComponent implements OnInit{
       const appointment = new TutoringAppointment();
       appointment.tutoringAppointmentNo = 0;
       appointment.tutoringAppointmentUser = this.user.userId;
-      appointment.isAccomplished = false;
+      appointment.accomplished = false;
       appointment.tutoringAppointmentDate = new Date(2024, 11, 6).toISOString();
       appointment.tutoringAppointmentStartDateTime = new Date(2024, 11, 6, 13, 0, 0).toISOString();
       appointment.tutoringAppointmentEndDateTime = new Date(2024, 11, 6, 14, 0, 0).toISOString();

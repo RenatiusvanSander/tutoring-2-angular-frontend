@@ -27,4 +27,8 @@ export class TutoringAppointmentDataService {
   async updateMultipleTutoringAppointments(appointments: TutoringAppointment[]): Promise<Array<TutoringAppointment>> {
     return lastValueFrom(this.http.put<Array<TutoringAppointment>>(TutoringAppointmentDataService.apiUrl + '/update/multiple-appointments', appointments));
   }
+
+  async loadNotAccomplishedAppointments(): Promise<Array<TutoringAppointment>> {
+    return lastValueFrom(this.http.get<Array<TutoringAppointment>>(TutoringAppointmentDataService.apiUrl + '/get/by-not-accomplished'));
+  }
 }
