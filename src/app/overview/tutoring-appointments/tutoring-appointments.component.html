@@ -1,8 +1,8 @@
-<div class="margin--left-8rem main-content">
+<section class="margin--left-8rem main-content">
     <h1 class="heading1">Tutor Termine</h1>
     <br />
     <button class="tutoring3-button tutoring3-button--user-select-none tutoring3-button--border-radius-25 tutoring3-button--button margin--left-1rem" [routerLink]="['/overview','tutoring-appointments','add-tutoring-appointment']">Termin Buchen</button>
-    <div *ngIf="dataLoaded">
+    <section *ngIf="dataLoaded">
         <div class="margin--left-1rem borders--border-bottom list--background margin-horizontal-1rem" *ngFor="let appointment of appointments; let addressPosition = index">
             <div class="margin--left-1rem font-size--26">
                 <p class="mb-0">No: {{appointment.tutoringAppointmentNo}}</p>
@@ -14,5 +14,5 @@
                 <button class="tutoring3-button tutoring3-button--user-select-none tutoring3-button--border-radius-25 tutoring3-button--button margin--left-1rem" (click)="navigateToUpdateAppointment(appointment)" >Update Termin</button>
             </div>
         </div>
-    </div>
-</div>
+    </section>
+</section>
