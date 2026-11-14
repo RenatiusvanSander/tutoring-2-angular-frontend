@@ -1,0 +1,30 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+:host .main-content {
+  box-sizing: border-box;
+  height: auto;
+  min-height: 100vh;
+  min-width: 0;
+  padding-bottom: 2rem;
+}
+
+:host .main-content > section {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+:host .main-content > section > div {
+  box-sizing: border-box;
+  min-width: 0;
+  margin: 0 1rem;
+  padding: 1rem;
+}
+
+:host .main-content > section > div > div {
+  margin-left: 0;
+  overflow-wrap: anywhere;
+}

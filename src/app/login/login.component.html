@@ -1,4 +1,8 @@
 <div class="margin--left-8rem">
-    <button *ngIf="!keycloakLoginAndLogout.isLoggedIn()" (click)="keycloakLoginAndLogout.login()">Login redirect you to Login Page</button>
-    <p *ngIf="keycloakLoginAndLogout.isLoggedIn()">You are aready logged in!</p>
+    <h1 class="heading1">Login</h1>
+    <br />
+    <section class="main-content">
+        <button class="tutoring3-button tutoring3-button--user-select-none tutoring3-button--border-radius-25 tutoring3-button--button margin--left-1rem" href="https://keycloak.local:8443/realms/ConnectTrial/login-actions/registration?client_id=tutoring-angular-frontend&tab_id=DalxNh8fFjE&client_data=eyJydSI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDIwMC9vdmVydmlldyIsInJ0IjoiY29kZSIsInJtIjoiZnJhZ21lbnQiLCJzdCI6IjZjMzFkM2Y1LTMxNzgtNGM4NC04ZDBjLTFiYmIyNzBjNGM1NiJ9" *ngIf="!keycloakLoginAndLogout.isLoggedIn()" (click)="keycloakLoginAndLogout.login()">Login</button>
+        <p *ngIf="keycloakLoginAndLogout.isLoggedIn()">You are aready logged in!</p>
+    </section>
 </div>
